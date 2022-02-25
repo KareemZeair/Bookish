@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -31,4 +30,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
+
+    public function wish_list()
+    {
+        return $this->belongsToMany(Book::class, 'wish_lists');
+    }
+
+    public function past_read()
+    {
+        return $this->belongsToMany(Book::class, 'past_reads');
+    }
+
 }
