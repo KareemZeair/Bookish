@@ -17,13 +17,12 @@
             @if($books)
 
             <div class="container-fluid content-row">
-                <div class="row">
+                <div class="row" id="search_results">
 
                     @foreach($books as $book)
                     <div class="col-md-6 col-lg-3 py-2">
                         <div class="card h-100" style="width: 300px; min-width: 250px; background-color: #373E56;">
-                            <!-- account for null covers -->
-                            <img src="https://covers.openlibrary.org/b/olid{{$book['olid'].'-L.jpg'}}" onerror="this.src='MediaAssets/fallback.jpg'" class="card-img-top img-fluid" />
+                            <img src="https://covers.openlibrary.org/b/olid{{$book['olid'].'-L.jpg'}}" class="card-img-top img-fluid" />
                             <div class="card-body">
                                 <p style="color: white;" class="align-middle">{{$book['title']}} ({{$book['author_name']}}) - {{$book['publish_date']}}</p>
                             </div>
@@ -31,13 +30,31 @@
                     </div>
                     @endforeach
                 </div>
-                @else
-                <div class="container text-center">
-                    <p class="alert alert-secondary ">
-                        Your search returned no results. Please Try a different name.
-                    </p>
-                </div>
-                @endif
+                @endforeach
+            </div>
+            <script>
+                window.addEventListener("load", function(){
+                    var elements_list = document.getElementById("search_results").children;
+                    var image = new Image(1,1);
+                    var img_tag = "";
+                    for (let i = 0; i < elements_list.length; i++) {
+
+                        img_tag = elements_list[i].getElementsByTagName("img")[0];
+                        
+                        if(img_tag.naturalHeight == 1){
+                            img_tag.src = "MediaAssets/1984.jpg";
+                        }
+                    }
+                });
+            </script>
+            @else
+            <br>
+            <div class="container text-center pt-7">
+                <p class="alert alert-secondary ">
+                    Your search returned no results. Please Try a different name.
+                </p>
+            </div>
+            @endif
 
             </div>
         </div>
