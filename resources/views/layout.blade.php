@@ -49,7 +49,7 @@
 
 
 
-<body class="pt-3">
+<body class="pt-3 bg-light">
 
     @yield('content')
 

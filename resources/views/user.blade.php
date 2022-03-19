@@ -2,30 +2,30 @@
 
 @section('content')
 
-<section style="background-color: #705C57;">
+<section style="background-color: #373e56;">
     <div class="container my-5">
         <!-- user info -->
         <div class="row">
             <div class="col-3 mx-0 pt-5 pb-2" style="border-right: 2px solid beige; height: 454.4px;">
                 <div class="row">
-                    <img src="MediaAssets/user.png" style="width: 300px; height:auto;">
+                    <img src="MediaAssets/user.jpg" style="width: 300px; height:auto; border-radius: 50%;">
                 </div>
-                <div class="row" style="width: 300px;">
-                    <h1 style="color: #000000;   text-align: center;" class="mt-3">Michael Scott</h1>
+                <div class="row mt-3" style="width: 300px;">
+                    <h1 style="color: #F3F2F2;   text-align: center;  font-family: Century Gothic, sans-serif;" class="mt-3">Kareem Zeair</h1>
                 </div>
             </div>
             <!-- favorite book -->
             <div class="col pt-5 pb-3 mx-5 text-center">
-                <h1 style="color: #000000; text-decoration: underline;">Favourite Title</h1>
+                <h1 style="color: #F3F2F2; text-decoration: underline; font-family: Century Gothic, sans-serif;">Favourite Title</h1>
                 <img src="MediaAssets/1984.jpg" style="width:150px;" class="my-3">
-                <h2 style="color: #F3F2F2;">"1984" by George Orwell</h2>
+                <h2 style=" font-size: 25px; color: #F3F2F2; font-family: Century Gothic, sans-serif;">"1984" by George Orwell</h2>
             </div>
             <!-- favorite quote -->
             <div class="col pt-5 pb-3 border-left">
-                <h1 style="color: #000000; text-decoration: underline;text-align: center;">Favourite Quote</h1>
-                <h2 style="color: #F3F2F2; font-family: Times New Roman, Times, serif; letter-spacing: 1px;" class="mt-5">“Would I rather be feared or loved?</h2>
-                <h2 style="color: #F3F2F2; font-family: Times New Roman, Times, serif; letter-spacing: 1px;"> Easy. Both. I want people to be afraid of how much they love me.”</h2>
-                <h2 style="color: #F3F2F2; font-family: Times New Roman, Times, serif; letter-spacing: 1px; text-align: right;" class="mb-5"> ~Michael Scott</h2>
+                <h1 style="color: #F3F2F2; text-decoration: underline;text-align: center; font-family: Century Gothic, sans-serif;">Favourite Quote</h1>
+                <h2 style=" font-size: 25px; color: #F3F2F2; font-family: Century Gothic, sans-serif; letter-spacing: 1px;" class="mt-5">“Would I rather be feared or loved?
+                    Easy. Both. I want people to be afraid of how much they love me.”</h2>
+                <h2 style=" font-size: 25px; color: #F3F2F2; font-family: Century Gothic, sans-serif; letter-spacing: 1px; text-align: right;" class="mb-5"> ~Michael Scott</h2>
             </div>
         </div>
 </section>
