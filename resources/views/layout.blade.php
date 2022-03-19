@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>My Profile</title>
+    <title>Bookish</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
                         <a class="nav-link" href="#">Marketplace</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Sign out</a>
+                        <a class="nav-link" href="/login" tabindex="-1">Sign out</a>
                     </li>
                 </ul>
 

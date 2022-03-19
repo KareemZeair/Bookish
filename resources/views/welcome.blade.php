@@ -34,12 +34,6 @@
                         User Login
                     </div>
                     <div class="card-body">
-                        @if($message = Session::get('error'))
-                        <div class="alert alert-danger">
-                            <button type="button" class="close" data-dismiss="alert">x</button>
-                            <strong>{{ $message }}</strong>
-                        </div>
-                        @endif
                         @if(count($errors) > 0)
                         <div class="alert alert-danger">
                             <ul>
@@ -49,7 +43,7 @@
                             </ul>
                         </div>
                         @endif
-                        <form method="post" autocomplete="off">
+                        <form method="POST" autocomplete="off" action="/Home">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <input type="text" class="form-control my-2" name="email" placeholder="Email">
@@ -57,7 +51,7 @@
                             <div class="form-group">
                                 <input type="password" class="form-control my-2" name="password" placeholder="Password">
                             </div>
-                            <input type="submit" class="btn btn-primary my-2" name="login" value="login"></button>
+                            <input type="submit" class="btn btn-primary my-2" name="login" value="Login"></button>
                             <section class="mt-2"> Not a member? <a> sign up </a></section>
                         </form>
 
