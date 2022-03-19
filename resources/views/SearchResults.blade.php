@@ -30,7 +30,6 @@
                     </div>
                     @endforeach
                 </div>
-                @endforeach
             </div>
             <script>
                 window.addEventListener("load", function(){
