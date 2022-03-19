@@ -51,7 +51,9 @@
 
 <body class="pt-3 bg-light">
 
-    @yield('content')
+    <section>
+        @yield('content')
+    </section>
 
     <footer class="footer text-muted bg-dark py-5">
         <div class="">

@@ -32,16 +32,16 @@
                 </div>
             </div>
             <script>
-                window.addEventListener("load", function(){
+                window.addEventListener("load", function() {
                     var elements_list = document.getElementById("search_results").children;
-                    var image = new Image(1,1);
+                    var image = new Image(1, 1);
                     var img_tag = "";
                     for (let i = 0; i < elements_list.length; i++) {
 
                         img_tag = elements_list[i].getElementsByTagName("img")[0];
-                        
-                        if(img_tag.naturalHeight == 1){
-                            img_tag.src = "MediaAssets/1984.jpg";
+
+                        if (img_tag.naturalHeight == 1) {
+                            img_tag.src = "MediaAssets/fallback.png";
                         }
                     }
                 });
@@ -55,8 +55,8 @@
             </div>
             @endif
 
-            </div>
         </div>
+    </div>
     </div>
 </section>
 @endsection

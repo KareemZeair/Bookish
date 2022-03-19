@@ -6,10 +6,10 @@ use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
     // return view('welcome');
-    return view('user');
+    return view('bookDetails');
 });
 
-Route::post('/Home', function () {
+Route::get('/Home', function () {
     return view('user');
 });
 
