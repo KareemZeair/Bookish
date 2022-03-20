@@ -19,7 +19,7 @@
 
 <body class="pt-3 bg-light">
 
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #F3F2F2;">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #F3F2F2;   border-bottom: 1px solid; border-color:lightgray;">
         <div class="container-fluid">
             <a class="navbar-brand mb-2" href="/"><img src="MediaAssets/iconTr1.png" alt="home" style="width: 120px; height:auto;"></a>
 
@@ -40,7 +40,7 @@
                     <li class="nav-item">
                         <form action="/logout" method="POST">
                             @csrf
-                            <button class="nav-link" type="submit">Log Out</button>
+                            <button class="nav-link" style="background-color: Transparent; border: none;" type="submit">Log Out</button>
                         </form>
                     </li>
                     @endauth
@@ -63,33 +63,34 @@
         </div>
     </nav>
 
-</head>
+    </head>
 
 
 
-<body class="pt-3 bg-light">
+    <body class="pt-3 bg-light">
 
-    <section>
-        @yield('content')
-    </section>
+        <section>
+            @yield('content')
+        </section>
 
-    <footer class="footer text-muted bg-dark py-5">
-        <div class="">
-            <p class="text-white px-5">Youssef Ali & Kareem Zeair 2022</p>
-            <small class="text-white px-5">Developed For ECE 5010</small>
-        </div>
-    </footer>
+        <footer class="footer text-muted bg-dark py-5">
+            <div class="">
+                <p class="text-white px-5">Youssef Ali & Kareem Zeair 2022</p>
+                <small class="text-white px-5">Developed For ECE 5010</small>
+            </div>
+        </footer>
 
-    @if(session()->has('success'))
+        @if(session()->has('success'))
         <div id="success-message">
-            <p  class="alert alert-success">
+            <p class="alert alert-success">
                 {{session('success')}}
             </p>
         </div>
         <script>
             var mes = document.getElementById("success-message");
-            setTimeout( () => mes.remove(), 4000)
+            setTimeout(() => mes.remove(), 4000)
         </script>
-    @endif
-</body>
+        @endif
+    </body>
+
 </html>

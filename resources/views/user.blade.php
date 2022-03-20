@@ -31,7 +31,7 @@
 </section>
 
 <div class="container">
-    <div class="col w-75 my-5">
+    <div class="col my-5">
         <div class="row">
             <h1>Past Reads</h1>
             <div class="d-flex flex-row flex-nowrap overflow-auto">

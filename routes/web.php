@@ -7,13 +7,16 @@ use App\Http\Controllers\SessionController;
 
 
 Route::get('/', function () {
-    // return view('welcome');
+    // return view('user');
     return view('bookDetails');
 });
 
 Route::get('/Home', function () {
     return view('user');
 });
+
+
+
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
@@ -24,3 +27,7 @@ Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth'
 
 Route::get('/search', [BookController::class, 'search']);
 Route::get('/bookDetails/{olid}', [BookController::class, 'getBook']);
+
+Route::get('/logout', function () {
+    return view('welcome');
+});

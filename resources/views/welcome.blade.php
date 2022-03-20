@@ -19,49 +19,52 @@
     <style>
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: #f8f0e8;
+            /* background-color: #f8f0e8; */
             /* background-image: url("MediaAssets/bg.jpg"); */
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center align-items-center" style="height:100vh">
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-header">
+    <div class="container justify-content-center" style="margin-bottom: 50px;">
+
+
+        <div class="col justify-content-center">
+            <div class="row d-flex justify-content-center">
+                <form class="d-flex px-0" method="GET" action="/search" style="width: 60%; margin-top: 50px;">
+                    <input class="form-control me-2" name="keyword" type="search" placeholder="Search for Books" aria-label="Search">
+                    <input type="hidden" id="page" name="page" value="1">
+                    <button class="btn" type="submit" style="border-color: #4d587d;"><img src="MediaAssets/search.svg" alt=""></button>
+                </form>
+            </div>
+
+            <div class="row d-flex justify-content-center">
+                <div class="card px-0" style="margin-top: 50px; width: 40%">
+                    <div class="card-header" style="background-color: #4d587d; color: white; text-align: center;">
                         User Login
                     </div>
                     <div class="card-body">
                         <form method="POST" autocomplete="off" action="/login">
                             @csrf
                             <div class="form-group">
-                                <input type="text" 
-                                    class="form-control my-2" 
-                                    name="email" 
-                                    id="email"
-                                    value="{{ old('email') }}"
-                                    placeholder="Email">
+                                <input type="text" class="form-control my-2" name="email" id="email" value="{{ old('email') }}" placeholder="Email">
                             </div>
                             @error("email")
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
-                            
+
                             <div class="form-group">
-                                <input type="password" 
-                                    class="form-control my-2" 
-                                    name="password" 
-                                    placeholder="Password">
+                                <input type="password" class="form-control my-2" name="password" placeholder="Password">
                             </div>
-                            <input type="submit" class="btn btn-primary my-2" name="login" value="Login"></button>
-                            <section class="mt-2"> Not a member? <a> sign up </a></section>
+                            <input type="submit" class="btn my-2" name="login" value="Login" style="background-color: #4d587d; color: white;"></button>
+                            <section class="mt-2"> Not a member? <a href="/register"> sign up </a></section>
                         </form>
 
                     </div>
                 </div>
             </div>
         </div>
+        <!-- </div> -->
     </div>
 
     <footer class="footer text-muted bg-dark py-5">
