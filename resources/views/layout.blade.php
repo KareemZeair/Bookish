@@ -13,6 +13,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+
+
+
+<body class="pt-3 bg-light">
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #F3F2F2;">
         <div class="container-fluid">
@@ -31,9 +36,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Marketplace</a>
                     </li>
+                    @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="/login" tabindex="-1">Sign out</a>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button class="nav-link" type="submit">Log Out</button>
+                        </form>
                     </li>
+                    @endauth
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register" tabindex="-1">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login" tabindex="-1">Log In</a>
+                    </li>
+                    @endguest
                 </ul>
 
                 <form class="d-flex" method="GET" action="/search">
@@ -62,8 +80,16 @@
         </div>
     </footer>
 
+    @if(session()->has('success'))
+        <div id="success-message">
+            <p  class="alert alert-success">
+                {{session('success')}}
+            </p>
+        </div>
+        <script>
+            var mes = document.getElementById("success-message");
+            setTimeout( () => mes.remove(), 4000)
+        </script>
+    @endif
 </body>
-
-
-
 </html>

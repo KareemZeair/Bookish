@@ -34,22 +34,25 @@
                         User Login
                     </div>
                     <div class="card-body">
-                        @if(count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-                        <form method="POST" autocomplete="off" action="/Home">
-                            {{ csrf_field() }}
+                        <form method="POST" autocomplete="off" action="/login">
+                            @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control my-2" name="email" placeholder="Email">
+                                <input type="text" 
+                                    class="form-control my-2" 
+                                    name="email" 
+                                    id="email"
+                                    value="{{ old('email') }}"
+                                    placeholder="Email">
                             </div>
+                            @error("email")
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                            
                             <div class="form-group">
-                                <input type="password" class="form-control my-2" name="password" placeholder="Password">
+                                <input type="password" 
+                                    class="form-control my-2" 
+                                    name="password" 
+                                    placeholder="Password">
                             </div>
                             <input type="submit" class="btn btn-primary my-2" name="login" value="Login"></button>
                             <section class="mt-2"> Not a member? <a> sign up </a></section>
