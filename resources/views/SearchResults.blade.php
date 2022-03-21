@@ -1,6 +1,13 @@
 @extends('layout')
 <!-- #9FB1BC -->
 @section('content')
+
+<style>
+    .card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0px 7px 3px rgba(0, 0, 0, 0.5);
+    }
+</style>
 <section class="jumbotron text-center" style="margin-top: 80px;">
     <div>
         <div class="container justify-content-center">
@@ -21,8 +28,10 @@
 
                     @foreach($books as $book)
                     <div class="col-md-6 col-lg-3 py-2">
-                        <div class="card h-100" style="width: 300px; min-width: 250px; background-color: #373E56;">
-                            <img src="{{$book['img']}}" style="height: 400px; object-fit: contain; background-color: #FFFFFF;" class="card-img-top img-fluid" />
+                        <div class="card h-100" style="width: 300px; min-width: 250px; background-color: #373E56; transition: ease-in-out .3s;">
+                            <a href="/book?details={{json_encode($book)}}">
+                                <img src="{{$book['img']}}" style="height: 400px; object-fit: contain; background-color: #FFFFFF;" class="card-img-top img-fluid" />
+                            </a>
                             <div class="card-body">
                                 <a style="color: white;" href="/book?details={{json_encode($book)}}" class="align-middle">{{$book['title']}} ({{$book['author_name']}})</a>
                             </div>

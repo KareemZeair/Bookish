@@ -5,7 +5,7 @@
 <section style="background-color: #373e56;" class="px-0">
     <div class="container my-5 mx-0 px-0">
         <div class="row mx-0">
-            <div class="col-3 mx-0 pt-5 pb-2 justify-content-center" style="border-right: 2px solid; border-color: #505A7C">
+            <div class="col-3 mx-0 pt-4 pb-2 justify-content-center" style="border-right: 2px solid; border-color: #505A7C">
                 <div class="row justify-content-center mx-0">
                     <img src="{{$book['img']}}" style="width: 220px; height:auto; ">
                 </div>
@@ -16,34 +16,38 @@
 
                     <form action="/user/wishlist" method="POST">
                         @csrf
-                        <input type ="hidden"
-                               name ="details"
-                               value="{{json_encode($book)}}">
-                        <button class="btn btn-light my-2" type="submit" role="button">Add to Wishlist</button>
+                        <input type="hidden" name="details" value="{{json_encode($book)}}">
+                        <button class="btn btn-light my-2" type="submit" role="button" style="width: 100%;">Add to Wishlist</button>
                     </form>
 
                     <form action="/user/pastreads" method="POST">
                         @csrf
-                        <input type="hidden"
-                               name ="details"
-                               value="{{json_encode($book)}}">
-                        <button class="btn btn-light my-2" type="submit" role="button">Add to Past Reads</button>
+                        <input type="hidden" name="details" value="{{json_encode($book)}}">
+                        <button class="btn btn-light my-2" type="submit" role="button" style="width: 100%;">Add to Past Reads</button>
+                    </form>
+
+                    <form action="/user/pastreads" method="POST">
+                        @csrf
+                        <input type="hidden" name="details" value="{{json_encode($book)}}">
+                        <button class="btn my-2" type="submit" role="button" style="width: 100%; background-color:goldenrod; color:black;">Set as Favourite</button>
                     </form>
 
                 </div>
             </div>
 
-            <!-- favorite book -->
-            <div class="col pt-5 pb-3 mx-5 text-center" style="border-right: 2px solid; border-color: #505A7C">
+            <div class="col pb-3 mx-5 text-center align-items-center d-flex">
                 <div class="row justify-content-center mx-0">
-                    <div class="row">
-                        <div style="color: #F3F2F2; font-family: Century Gothic, sans-serif;">Author: {{$book['author_name']}}</div>
+                    <div class="row pb-5" style="border-bottom: 1px solid #4d587d;">
+                        <h3 style="color: #F3F2F2; font-family: Century Gothic, sans-serif;">Author:</h3>
+                        <h3 style="color: #F3F2F2; font-family: Century Gothic, sans-serif;" class="pt-3">{{$book['author_name']}}</h3>
                     </div>
-                    <div class="row">
-                        <div style="color: #F3F2F2; font-family: Century Gothic, sans-serif;">Publish Date: {{ $book['publish_date'] }}</div>
+                    <div class="row py-5" style="border-bottom: 1px solid #4d587d;">
+                        <h3 style="color: #F3F2F2; font-family: Century Gothic, sans-serif;">Publish Date:</h3>
+                        <h3 style="color: #F3F2F2; font-family: Century Gothic, sans-serif;" class="pt-3"> {{ $book['publish_date'] }}</h3>
                     </div>
-                    <div class="row">
-                        <div style="color: #F3F2F2; font-family: Century Gothic, sans-serif;">ISBN:  {{ $book['isbn'] }}</div>
+                    <div class="row pt-5">
+                        <h3 style="color: #F3F2F2; font-family: Century Gothic, sans-serif;">ISBN:</h3>
+                        <h3 style="color: #F3F2F2; font-family: Century Gothic, sans-serif;" class="pt-3">{{ $book['isbn'] }}</h3>
                     </div>
                 </div>
 
@@ -51,13 +55,12 @@
             </div>
 
 
-            <!-- favorite quote -->
-            <div class="col pt-5 pb-3">
+            <div class="col pt-4 pb-3" style="border-left: 2px solid; border-color: #505A7C">
                 <div class="row text-center mx-0">
                     <h1 style="color: #F3F2F2; font-family: Century Gothic, sans-serif;">Plot:</h1>
                 </div>
                 <div class="row mt-3 row  mx-0">
-                    <div style="color: #F3F2F2;  font-family: Century Gothic, sans-serif; text-align: justify;" class="mt-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod ratione repellat quas similique aperiam? Odio eum quaerat aperiam? Culpa quibusdam hic dicta, nam voluptatem ipsa facilis nisi unde nemo! Provident?Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit debitis suscipit ex nulla corporis quos doloremque molestiae dicta vero ut, nemo molestias architecto numquam. Beatae eos qui earum dignissimos incidunt.</div>
+                    <div style="color: #F3F2F2;  font-family: Century Gothic, sans-serif; text-align: justify; font-size:larger;" class="mt-3">Unavailable</div>
                 </div>
 
             </div>

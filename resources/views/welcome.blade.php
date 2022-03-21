@@ -38,6 +38,12 @@
                 </form>
             </div>
 
+            <div class="row d-flex justify-content-center" style="margin-top: 50px;">
+                <div style="width: 80%; text-align: center; border-bottom: 1px solid #4d587d; line-height: 0.1em; margin: 10px 0 20px;">
+                    <span style=" background:#fff; padding:0 10px;"> OR </span>
+                </div>
+            </div>
+
             <div class="row d-flex justify-content-center">
                 <div class="card px-0" style="margin-top: 50px; width: 40%">
                     <div class="card-header" style="background-color: #4d587d; color: white; text-align: center;">
