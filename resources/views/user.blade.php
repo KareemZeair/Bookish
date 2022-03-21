@@ -8,19 +8,19 @@
         <div class="row">
             <div class="col-3 mx-0 pt-5 pb-2" style="border-right: 2px solid beige; height: 454.4px;">
                 <div class="row">
-                    <img src="{{$user->img}}" style="width: 300px; height:auto; border-radius: 50%;">
+                    <img src="{{$user->img}}" style="width: 300px; height:300px; background-color:#FFFFFF; border-radius: 50%; object-fit: contain;">
                 </div>
                 <div class="row mt-3" style="width: 300px;">
                     <h1 style="color: #F3F2F2;   text-align: center;  font-family: Century Gothic, sans-serif;" class="mt-3">{{$user->name}}</h1>
                 </div>
             </div>
-            <!-- favorite book
+            <!-- favorite book -->
             
             <div class="col pt-5 pb-3 mx-5 text-center">
-                <h1 style="color: #F3F2F2; text-decoration: underline; font-family: Century Gothic, sans-serif;">Favourite Title</h1>
+                <!-- <h1 style="color: #F3F2F2; text-decoration: underline; font-family: Century Gothic, sans-serif;">Favourite Title</h1>
                 <img src="MediaAssets/1984.jpg" style="width:150px;" class="my-3">
-                <h2 style=" font-size: 25px; color: #F3F2F2; font-family: Century Gothic, sans-serif;">"1984" by George Orwell</h2>
-            </div> -->
+                <h2 style=" font-size: 25px; color: #F3F2F2; font-family: Century Gothic, sans-serif;">"1984" by George Orwell</h2> -->
+            </div>
             <!-- favorite quote -->
             @if($user->fav_quote)
             <div class="col pt-5 pb-3 border-left">
