@@ -5,49 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Book;
+use App\Models\User;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $r)
     {
-        //
+        if(! auth()->check()){
+            return redirect('/');
+        }
+
+        return view('user',[
+            "user" => auth()->user()
+        ]);
     }
 
     /**
@@ -84,27 +61,47 @@ class UserController extends Controller
         //
     }
 
-    public function checkLogin(Request $request)
+    public function wishlist(Request $r)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|alphaNum|min:4'
-        ]);
-
-        $user_data = array(
-            'email' => $request->email,
-            'password' => $request->password
-        );
-
-        if (Auth::attempt($user_data)) {
-            return redirect('/login');
-        } else {
-            return back()->with('error', 'Wrong login details');
+        $tempBook = json_decode($r->details, true);
+        $user = Auth::user();
+        $dbBook = Book::where('key', $tempBook['key'])->first();
+        if($dbBook === null){
+            $dbBook = new Book(); 
+            $dbBook->title = $tempBook['title'];
+            $dbBook->isbn = $tempBook['isbn'];
+            $dbBook->author_name = $tempBook['author_name'];
+            $dbBook->publish_date = $tempBook['publish_date'];
+            $dbBook->key = $tempBook['key'];
+            $dbBook->img = $tempBook['img'];
+            $dbBook->save();
         }
+        $user->wish_list()->attach($dbBook->id);
+        $user->save();
+
+        return redirect('/Home');
+
     }
 
-    public function successlogin()
+    public function pastreads(Request $r)
     {
-        return view('home');
+        $tempBook = json_decode($r->details, true);
+        $user = Auth::user();
+        $dbBook = Book::where('key', $tempBook['key'])->first();
+        if($dbBook === null){
+            $dbBook = new Book(); 
+            $dbBook->title = $tempBook['title'];
+            $dbBook->isbn = $tempBook['isbn'];
+            $dbBook->author_name = $tempBook['author_name'];
+            $dbBook->publish_date = $tempBook['publish_date'];
+            $dbBook->key = $tempBook['key'];
+            $dbBook->img = $tempBook['img'];
+            $dbBook->save();
+        }
+        $user->past_read()->attach($dbBook->id);
+        $user->save();
+
+        return redirect('/Home');
+
     }
 }

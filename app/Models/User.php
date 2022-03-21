@@ -37,6 +37,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Book::class, 'wish_lists');
     }
 
+
     public function past_read()
     {
         return $this->belongsToMany(Book::class, 'past_reads');

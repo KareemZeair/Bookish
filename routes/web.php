@@ -4,30 +4,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
 
 
-Route::get('/', function () {
-    // return view('user');
-    return view('bookDetails');
-});
-
-Route::get('/Home', function () {
-    return view('user');
-});
-
-
-
+Route::get('/Home', [UserController::class, 'show'])->middleware('auth');
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+Route::post('/user/wishlist', [UserController::class, 'wishlist'])->middleware('auth');
+Route::post('/user/pastreads', [UserController::class, 'pastreads'])->middleware('auth');
 
-Route::get('/login', [SessionController::class, 'create'])->middleware('guest');
+Route::get('/', [SessionController::class, 'create']);
+Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
 
 Route::get('/search', [BookController::class, 'search']);
-Route::get('/bookDetails/{olid}', [BookController::class, 'getBook']);
+Route::get('/book', [BookController::class, 'getBook']);
 
-Route::get('/logout', function () {
-    return view('welcome');
-});

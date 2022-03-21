@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('img')->nullable();
+            $table->string('fav_quote')->nullable();
+            $table->string('fav_quote_teller')->nullable();
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
@@ -27,10 +30,13 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('ISBN')->unique();
-            $table->string('author');
-            $table->text('plot');
-            $table->date('publish_date');
+            $table->string('isbn')->unique();
+            $table->string('author_name');
+            $table->string('publish_date');
+            $table->string('key');
+            $table->string('img');
+            $table->text('plot')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('reviews', function (Blueprint $table) {
@@ -39,6 +45,7 @@ return new class extends Migration
             $table->foreignId('book_id');
             $table->string('content');
             $table->date('added_on');
+            $table->timestamps();
         });
 
         Schema::create('wish_lists', function (Blueprint $table) {

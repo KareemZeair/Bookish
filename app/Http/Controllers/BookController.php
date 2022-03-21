@@ -11,11 +11,24 @@ class BookController extends Controller
         $s = Null;
         foreach ($seeds as $seed) {
             if (str_starts_with($seed, "/books")) {
-                $s = substr($seed, strlen("/books"));   //might need checking for when the string starts (index 0?)
+                $s = substr($seed, strlen("/books")+1);
+
                 break;
             }
         }
         return $s;
+    }
+
+    public function extractISBN($isbns)
+    {
+        $i = Null;
+        foreach ($isbns as $isbn) {
+            if (str_starts_with($isbn, "978") and strlen($isbn) == 13) {
+                $i = $isbn;
+                break;
+            }
+        }
+        return $i;
     }
 
     public function search(Request $request)
@@ -47,10 +60,13 @@ class BookController extends Controller
         foreach ($books as $book) {
             // dd($data);
             $bookData = array();
+            $bookData['key'] = substr($book->key, strlen("/works")+1);
             $bookData['title'] = $book->title;
             $bookData['author_name'] = $book->author_name[0] ?? $book->author_name ?? null;
             $bookData['publish_date'] = $book->publish_date[1] ?? $book->publish_date[0] ?? $book->publish_date ?? null;
             $bookData['olid'] = BookController::extractOLID($book->seed);
+            $bookData['isbn'] = BookController::extractISBN($book->isbn ?? []);
+            $bookData['img'] = "https://covers.openlibrary.org/b/olid/" . $bookData['olid'] . "-L.jpg";
             array_push($booksData, $bookData);
         }
 
@@ -60,6 +76,14 @@ class BookController extends Controller
             'keyword' => $request->keyword
         ]);
     }
+
+    public function getBook(Request $request){
+        return view('bookDetails', [
+            'book' => json_decode($request->details, true)
+        ]);
+        
+    }
+
 
     public function show()
     {

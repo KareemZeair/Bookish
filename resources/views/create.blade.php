@@ -35,19 +35,19 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="/register" method="POST">
+                        <form action="/register" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
-                                <label for="name" class="col-sm-2 col-form-label mb-0 pb-1">Full Name</label>
-                                <input type="text" class="form-control mb-2" name="name" placeholder="Enter your first and last name" id="name" value="{{ old('name') }}" required>
+                                <label for="fname" class="col-sm-2 col-form-label mb-0 pb-1">Full Name</label>
+                                <input type="text" class="form-control mb-2" name="fname" placeholder="Enter your first and last name" id="fname" value="{{ old('fname') }}" required>
                             </div>
                             @error("name")
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="form-group">
-                                <label for="name" class="col-sm-2 col-form-label mb-0 pb-1">Email Address</label>
+                                <label for="email" class="col-sm-2 col-form-label mb-0 pb-1">Email Address</label>
                                 <input type="email" class="form-control mb-2" placeholder="Enter your email address" name="email" id="email" value="{{ old('email') }}" required>
                             </div>
                             @error("email")
@@ -55,7 +55,7 @@
                             @enderror
 
                             <div class="form-group">
-                                <label for="name" class="col-sm-2 col-form-label mb-0 pb-1">Username</label>
+                                <label for="username" class="col-sm-2 col-form-label mb-0 pb-1">Username</label>
                                 <input type="text" class="form-control mb-2" placeholder="Enter your username" name="username" id="username" value="{{ old('username') }}" required>
                             </div>
                             @error("username")
@@ -63,11 +63,36 @@
                             @enderror
 
                             <div class="form-group">
-                                <label for="name" class="col-sm-2 col-form-label mb-0 pb-1">Password</label>
+                                <label for="password" class="col-sm-2 col-form-label mb-0 pb-1">Password</label>
                                 <input type="password" class="form-control mb-2" placeholder="Enter a unique password" name="password" id="password" value="{{ old('password') }}" required>
                             </div>
                             @error("password")
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+
+                            <div class="form-group">
+                                <label for="fav_quote" class="col-sm-2 col-form-label mb-0 pb-1">Favourite Quote</label>
+                                <textarea class="form-control mb-2" name="fav_quote" id="fav_quote" value="{{ old('fav_quote') }}"></textarea>
+                            </div>
+                            @error("fav_quote")
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+
+                            <div class="form-group row">
+                                <label for="fav_quote_teller" class="col-sm-2 col-form-label mb-0 pb-1">By: </label>
+                                <input type="text" style="width:200px" class="form-control mb-2" name="fav_quote_teller" id="fav_quote_teller" value="{{ old('fav_quote_teller') }}">
+                            </div>
+                            @error("fav_quote_teller")
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+
+                            <div class="form-group">
+                                <label for="profile_pic" class="col-form-label mb-0 pb-1">Please upload a profile picture </label>
+                                <br>
+                                <input type="file" name="profile_pic" placeholder="Choose image" id="profile_pic" value="{{ old('profile_pic') }}">
+                            </div>
+                            @error('image')
+                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
 
                             <div>

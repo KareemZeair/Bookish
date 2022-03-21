@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class SessionController extends Controller
 {
     public function create(){
+        if(auth()->check()){
+            return redirect('/Home');
+        }
+
         return view('welcome');
     }
 

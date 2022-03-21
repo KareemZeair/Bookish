@@ -22,9 +22,9 @@
                     @foreach($books as $book)
                     <div class="col-md-6 col-lg-3 py-2">
                         <div class="card h-100" style="width: 300px; min-width: 250px; background-color: #373E56;">
-                            <img src="https://covers.openlibrary.org/b/olid{{$book['olid'].'-L.jpg'}}" class="card-img-top img-fluid" />
+                            <img src="{{$book['img']}}" style="height: 400px; object-fit: contain; background-color: #FFFFFF;" class="card-img-top img-fluid" />
                             <div class="card-body">
-                                <p style="color: white;" class="align-middle">{{$book['title']}} ({{$book['author_name']}}) - {{$book['publish_date']}}</p>
+                                <a style="color: white;" href="/book?details={{json_encode($book)}}" class="align-middle">{{$book['title']}} ({{$book['author_name']}})</a>
                             </div>
                         </div>
                     </div>
