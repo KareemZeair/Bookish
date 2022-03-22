@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-3 mx-0 pt-5 pb-2" style="border-right: 2px solid beige; height: 454.4px;">
                 <div class="row">
-                    <img src="{{$user->img}}" style="width: 300px; height:300px; background-color:#FFFFFF; border-radius: 50%; object-fit: contain; padding: 2px;">
+                    <img src="{{$user->img ?? $user->fallback_img}}" style="width: 300px; height:300px; background-color:#FFFFFF; border-radius: 50%; object-fit: contain; padding: 2px;">
                 </div>
                 <div class="row mt-3" style="width: 300px;">
                     <h1 style="color: #F3F2F2;   text-align: center;  font-family: Century Gothic, sans-serif;" class="mt-3">{{$user->name}}</h1>

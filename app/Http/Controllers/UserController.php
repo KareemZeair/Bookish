@@ -73,9 +73,16 @@ class UserController extends Controller
             $dbBook->author_name = $tempBook['author_name'];
             $dbBook->publish_date = $tempBook['publish_date'];
             $dbBook->key = $tempBook['key'];
-            $dbBook->img = $tempBook['img'];
+            //$size = getimagesize($tempBook['img']);
+            //if ($size[0] > 1){
+                $dbBook->img = $tempBook['img'];
+            //}
             $dbBook->save();
         }
+        elseif($user->past_read->contains($dbBook->id)){
+            $user->past_read()->detach($dbBook->id);
+        }
+
         $user->wish_list()->attach($dbBook->id);
         $user->save();
 
@@ -95,8 +102,14 @@ class UserController extends Controller
             $dbBook->author_name = $tempBook['author_name'];
             $dbBook->publish_date = $tempBook['publish_date'];
             $dbBook->key = $tempBook['key'];
-            $dbBook->img = $tempBook['img'];
+            //$size = getimagesize($tempBook['img']);
+            //if ($size[0] > 1){
+                $dbBook->img = $tempBook['img'];
+            //}
             $dbBook->save();
+        }
+        elseif($user->wish_list->contains($dbBook->id)){
+            $user->wish_list()->detach($dbBook->id);
         }
         $user->past_read()->attach($dbBook->id);
         $user->save();

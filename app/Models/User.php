@@ -32,15 +32,17 @@ class User extends Authenticatable
         'remember_token'
     ];
 
+    public $fallback_img = "MediaAssets/user.png";
+
     public function wish_list()
     {
-        return $this->belongsToMany(Book::class, 'wish_lists');
+        return $this->belongsToMany(Book::class, 'wish_lists')->distinct();
     }
 
 
     public function past_read()
     {
-        return $this->belongsToMany(Book::class, 'past_reads');
+        return $this->belongsToMany(Book::class, 'past_reads')->distinct();
     }
 
 }
