@@ -45,4 +45,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Book::class, 'past_reads')->distinct();
     }
 
+    public function fav_book()
+    {
+        return $this->belongsTo(Book::class, 'book_id');
+    }
+
 }

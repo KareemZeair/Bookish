@@ -13,8 +13,25 @@ return new class extends Migration
      */
     public function up()
     {
+        
+        Schema::create('books', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->string('title');
+            $table->string('isbn')->unique();
+            $table->string('author_name');
+            $table->string('publish_date');
+            $table->string('key');
+            $table->string('img')->nullable();
+            $table->text('plot')->nullable();
+            $table->timestamps();
+        });
+        
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('username')->unique();
@@ -22,21 +39,12 @@ return new class extends Migration
             $table->string('img')->nullable();
             $table->string('fav_quote')->nullable();
             $table->string('fav_quote_teller')->nullable();
-            $table->rememberToken();
+            $table->integer('book_id')->unsigned()->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
-        });
 
-        Schema::create('books', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('isbn')->unique();
-            $table->string('author_name');
-            $table->string('publish_date');
-            $table->string('key');
-            $table->string('img');
-            $table->text('plot')->nullable();
-            $table->timestamps();
+            $table->foreign('book_id')->references('id')->on('books');
         });
 
         Schema::create('reviews', function (Blueprint $table) {

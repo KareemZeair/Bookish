@@ -29,12 +29,18 @@
                     @foreach($books as $book)
                     <div class="col-md-6 col-lg-3 py-2">
                         <div class="card h-100" style="width: 300px; min-width: 250px; background-color: #373E56; transition: ease-in-out .3s;">
-                            <a href="/book?details={{json_encode($book)}}">
-                                <img src="{{$book['img']}}" style="height: 400px; object-fit: contain; background-color: #FFFFFF;" class="card-img-top img-fluid" />
-                            </a>
-                            <div class="card-body">
-                                <a style="color: white;" href="/book?details={{json_encode($book)}}" class="align-middle">{{$book['title']}} ({{$book['author_name']}})</a>
-                            </div>
+                            <form action="/book/external" method="POST">
+                                @csrf
+                                <div style="background-color: #FFFFFF;">
+                                    <button type="submit" class="search-results-image" style="padding: 0; border: none; background: none;">
+                                        <img src="{{$book->img}}" style="height: 400px; object-fit: contain;" class="card-img-top img-fluid"/>
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <input type="hidden" name="details" value="{{json_encode($book)}}">
+                                    <button class="btn" type="submit" style="color: white;" class="align-middle">{{$book->title}} ({{$book->author_name}})</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     @endforeach
@@ -42,15 +48,14 @@
             </div>
             <script>
                 window.addEventListener("load", function() {
-                    var elements_list = document.getElementById("search_results").children;
+                    var elements_list = document.getElementsByClassName("search-results-image");
                     var image = new Image(1, 1);
                     var img_tag = "";
                     for (let i = 0; i < elements_list.length; i++) {
-
                         img_tag = elements_list[i].getElementsByTagName("img")[0];
 
                         if (img_tag.naturalHeight == 1) {
-                            img_tag.src = "MediaAssets/fallback.png";
+                            img_tag.src = "{{$book->fallback_img}}";
                         }
                     }
                 });
