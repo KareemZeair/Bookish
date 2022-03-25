@@ -56,10 +56,14 @@
             <div class="d-flex flex-row flex-nowrap overflow-auto">
 
                 @forelse($user->past_read as $book)
-                <div class="card card-block mx-2" style="width: 200px;  transition: ease-in-out .3s;">
-                    <img src="{{$book->img}}" width="200" class="card-img-top img-fluid" />
-                    <div class="card-body">
-                        <p style="color: #000000;">{{$book->title}} ({{$book->author_name}})</p>
+                <div style="padding: 5px;">
+                    <div class="card" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .3s;">
+                        <div style="background-color: #FFFFFF;">
+                           <img src="{{$book->img}}" style="height: 300px; object-fit: contain;" class="card-img-top img-fluid"/>
+                        </div>
+                        <div class="card-body">
+                            <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">{{$book->title}} ({{$book->author_name}})</a>
+                        </div>
                     </div>
                 </div>
                 @empty
@@ -75,10 +79,14 @@
             <h1>Wish List</h1>
             <div class="d-flex flex-row flex-nowrap overflow-auto ">
                 @forelse($user->wish_list as $book)
-                <div class="card card-block mx-2" style="width: 200px;  transition: ease-in-out .3s;">
-                    <img src="{{$book->img}}" width="200" class="card-img-top img-fluid" />
-                    <div class="card-body">
-                        <p style="color: #000000;">{{$book->title}} ({{$book->author_name}})</p>
+                <div style="padding: 5px;">
+                    <div class="card" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .3s;">
+                        <div style="background-color: #FFFFFF;">
+                           <img src="{{$book->img}}" style="height: 300px; object-fit: contain;" class="card-img-top img-fluid"/>
+                        </div>
+                        <div class="card-body">
+                            <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">{{$book->title}} ({{$book->author_name}})</a>
+                        </div>
                     </div>
                 </div>
                 @empty
