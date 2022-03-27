@@ -15,7 +15,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('create');
+        return view('user.create');
     }
 
     public function store(Request $r){
@@ -59,7 +59,7 @@ class UserController extends Controller
             return redirect('/');
         }
 
-        return view('user',[
+        return view('user.show',[
             "user" => auth()->user()
         ]);
     }

@@ -21,6 +21,8 @@ Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
 Route::get('/search', [TempBookController::class, 'search']);
-Route::get('/book/external', function() {return redirect('/');});
+Route::get('/book/external', function() { return redirect('/'); });
 Route::post('/book/external', [TempBookController::class, 'fetchBook']);
+
+Route::get('/book/{key}',  [BookController::class, 'show']);
 

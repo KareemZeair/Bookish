@@ -35,7 +35,7 @@ class TempBookController extends Controller
             array_push($t_books, $tb);
         }
 
-        return view('searchResults', [
+        return view('book.search', [
             'books' => $t_books
         ]);
     }
@@ -53,7 +53,7 @@ class TempBookController extends Controller
         $data = json_decode($data, true);
         $t_book->plot = $data['description']['value'] ?? $data['description'] ?? null;
 
-        return view('book', [
+        return view('book.show', [
             'book' => $t_book,
         ]);
         

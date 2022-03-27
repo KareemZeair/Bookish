@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('username')->unique();
             $table->string('password');
+            $table->string('phone_number')->nullable();
             $table->string('img')->nullable();
             $table->text('fav_quote')->nullable();
             $table->string('fav_quote_teller')->nullable();
