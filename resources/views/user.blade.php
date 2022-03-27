@@ -13,7 +13,7 @@
     <div class="container my-5">
         <!-- user info -->
         <div class="row">
-            <div class="col-3 mx-0 pt-5 pb-2" style="border-right: 2px solid beige; height: 454.4px;">
+            <div class="col-3 mx-0 pt-5 pb-2" style="border-right: 2px solid; border-color: #505A7C; height: 100%.4px;">
                 <div class="row">
                     <img src="{{ $user->fallback_img}}" style="width: 300px; height:300px; background-color:#FFFFFF; border-radius: 50%; object-fit: contain; padding: 2px;">
                 </div>
@@ -37,7 +37,8 @@
                 <h2 style=" font-size: 25px; color: #F3F2F2; font-family: Century Gothic, sans-serif; letter-spacing: 1px;" class="mt-5">
                     {{$user->fav_quote}}
                 </h2>
-                <h2 style=" font-size: 25px; color: #F3F2F2; font-family: Century Gothic, sans-serif; letter-spacing: 1px; text-align: right;" class="mb-5">
+                <h2 style=" font-size: 25px; color: #F3F2F2; font-family: Century Gothic, sans-serif; letter-spacing: 1px; text-align: right;
+                 width: 300px; height: 100px;" class="mb-5 custom-scrollbar-j p-2">
                     @if($user->fav_quote_teller)
                     ~ {{$user->fav_quote_teller}}
                     @else
@@ -59,7 +60,7 @@
                 <div style="padding: 5px;">
                     <div class="card" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .3s;">
                         <div style="background-color: #FFFFFF;">
-                           <img src="{{$book->img}}" style="height: 300px; object-fit: contain;" class="card-img-top img-fluid"/>
+                            <img src="{{$book->img}}" style="height: 300px; object-fit: contain;" class="card-img-top img-fluid" />
                         </div>
                         <div class="card-body">
                             <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">{{$book->title}} ({{$book->author_name}})</a>
@@ -80,9 +81,9 @@
             <div class="d-flex flex-row flex-nowrap overflow-auto ">
                 @forelse($user->wish_list as $book)
                 <div style="padding: 5px;">
-                    <div class="card" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .3s;">
+                    <div class="card h-100" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .3s;">
                         <div style="background-color: #FFFFFF;">
-                           <img src="{{$book->img}}" style="height: 300px; object-fit: contain;" class="card-img-top img-fluid"/>
+                            <img src="{{$book->img}}" style="height: 300px; object-fit: contain;" class="card-img-top img-fluid" />
                         </div>
                         <div class="card-body">
                             <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">{{$book->title}} ({{$book->author_name}})</a>

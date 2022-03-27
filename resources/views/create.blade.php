@@ -72,15 +72,17 @@
 
                             <div class="form-group">
                                 <label for="fav_quote" class="col-sm-2 col-form-label mb-0 pb-1">Favourite Quote</label>
-                                <textarea class="form-control mb-2" name="fav_quote" id="fav_quote" value="{{ old('fav_quote') }}"></textarea>
+                                <textarea class="form-control mb-2" name="fav_quote" id="fav_quote" value="{{ old('fav_quote') }}" placeholder="What is your favorite quote?"></textarea>
                             </div>
                             @error("fav_quote")
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="form-group row">
-                                <label for="fav_quote_teller" class="col-sm-2 col-form-label mb-0 pb-1">By: </label>
-                                <input type="text" style="width:200px" class="form-control mb-2" name="fav_quote_teller" id="fav_quote_teller" value="{{ old('fav_quote_teller') }}">
+                                <label for="fav_quote_teller" class="col-sm-2 col-form-label mb-0 pb-1">By:</label>
+                                <div>
+                                    <input type="text" style="width:200px" class="form-control mb-2" name="fav_quote_teller" id="fav_quote_teller" value="{{ old('fav_quote_teller') }}" placeholder="Quote Author">
+                                </div>
                             </div>
                             @error("fav_quote_teller")
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -92,7 +94,7 @@
                                 <input type="file" name="profile_pic" placeholder="Choose image" id="profile_pic" value="{{ old('profile_pic') }}">
                             </div>
                             @error('image')
-                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
 
                             <div>

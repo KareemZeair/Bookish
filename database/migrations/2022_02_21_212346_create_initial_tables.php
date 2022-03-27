@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        
+
         Schema::create('books', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->text('plot')->nullable();
             $table->timestamps();
         });
-        
+
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('img')->nullable();
-            $table->string('fav_quote')->nullable();
+            $table->text('fav_quote')->nullable();
             $table->string('fav_quote_teller')->nullable();
             $table->integer('book_id')->unsigned()->nullable();
             $table->timestamp('email_verified_at')->nullable();
