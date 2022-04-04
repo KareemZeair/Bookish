@@ -33,7 +33,7 @@
                                 @csrf
                                 <div style="background-color: #FFFFFF;">
                                     <button type="submit" class="search-results-image" style="padding: 0; border: none; background: none;">
-                                        <img src="{{$book->img}}" style="height: 400px; object-fit: contain;" class="card-img-top img-fluid"/>
+                                        <img src="{{$book->img}}" style="height: 400px; object-fit: contain;" class="card-img-top img-fluid" />
                                     </button>
                                 </div>
                                 <div class="card-body">

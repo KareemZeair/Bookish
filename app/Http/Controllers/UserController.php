@@ -18,12 +18,13 @@ class UserController extends Controller
         return view('create');
     }
 
-    public function store(Request $r){
+    public function store(Request $r)
+    {
         request()->validate([
             'fname' => ['required', 'max:255'],
-            'username' => ['required', 'min:3', 'alpha_dash' ,'max:255', Rule::unique('users', 'username')],
+            'username' => ['required', 'min:3', 'alpha_dash', 'max:255', Rule::unique('users', 'username')],
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
-            'profile_pic' => ['image','mimes:jpg,png,jpeg,gif,svg','max:2048'],
+            'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
             'password' => ['required', 'min:8']
         ]);
         $u = new User();
@@ -34,18 +35,18 @@ class UserController extends Controller
         $u->fav_quote = $r->fav_quote;
         $u->fav_quote_teller = $r->fav_quote_teller;
 
-        if ($r->file('profile_pic') != null){
+        if ($r->file('profile_pic') != null) {
             $path = "storage/" . $r->file('profile_pic')->store('pic');
             $u->img = $path;
         }
 
         $u->save();
-        
+
         auth()->login($u);
-        
+
         session()->flash('success', 'Your account has been created');
         return redirect('/');
-    }  
+    }
 
     /**
      * Display the specified resource.
@@ -55,11 +56,11 @@ class UserController extends Controller
      */
     public function show(Request $r)
     {
-        if(! auth()->check()){
+        if (!auth()->check()) {
             return redirect('/');
         }
 
-        return view('user',[
+        return view('user', [
             "user" => auth()->user()
         ]);
     }
@@ -104,10 +105,9 @@ class UserController extends Controller
         $user = Auth::user();
         $book = Book::where('key', $bookData['key'])->first();
 
-        if($book === null){
+        if ($book === null) {
             $book = Book::from_json($bookData);
-        }
-        elseif($user->past_read->contains($book->id)){
+        } elseif ($user->past_read->contains($book->id)) {
             $user->past_read()->detach($book->id);
         }
 
@@ -115,7 +115,6 @@ class UserController extends Controller
         $user->save();
 
         return redirect('/Home');
-
     }
 
     public function pastreads(Request $r)
@@ -123,18 +122,16 @@ class UserController extends Controller
         $bookData = json_decode($r->details, true);
         $user = Auth::user();
         $book = Book::where('key', $bookData['key'])->first();
-        
-        if($book === null){
+
+        if ($book === null) {
             $book = Book::from_json($bookData);
-        }
-        elseif($user->wish_list->contains($book->id)){
+        } elseif ($user->wish_list->contains($book->id)) {
             $user->wish_list()->detach($book->id);
         }
         $user->past_read()->attach($book->id);
         $user->save();
 
         return redirect('/Home');
-
     }
 
     public function make_favourite(Request $r)
@@ -142,14 +139,13 @@ class UserController extends Controller
         $bookData = json_decode($r->details, true);
         $user = Auth::user();
         $book = Book::where('key', $bookData['key'])->first();
-        
-        if($book === null){
+
+        if ($book === null) {
             $book = Book::from_json($bookData);
         }
 
         $user->fav_book()->associate($book);
         $user->save();
         return redirect('/Home');
-
     }
 }

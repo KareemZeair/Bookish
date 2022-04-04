@@ -23,6 +23,7 @@
             /* background-image: url("MediaAssets/bg.jpg"); */
         }
     </style>
+
 </head>
 
 <body>
@@ -39,7 +40,7 @@
                             @csrf
 
                             <div class="form-group">
-                                <label for="fname" class="col-sm-2 col-form-label mb-0 pb-1">Full Name</label>
+                                <label for="fname" class="col-sm-2 col-form-label mb-0 pb-1">Full Name<span style="color: red;">*</span></label>
                                 <input type="text" class="form-control mb-2" name="fname" placeholder="Enter your first and last name" id="fname" value="{{ old('fname') }}" required>
                             </div>
                             @error("name")
@@ -47,7 +48,7 @@
                             @enderror
 
                             <div class="form-group">
-                                <label for="email" class="col-sm-2 col-form-label mb-0 pb-1">Email Address</label>
+                                <label for="email" class="col-sm-2 col-form-label mb-0 pb-1">Email Address<span style="color: red;">*</span></label>
                                 <input type="email" class="form-control mb-2" placeholder="Enter your email address" name="email" id="email" value="{{ old('email') }}" required>
                             </div>
                             @error("email")
@@ -55,7 +56,7 @@
                             @enderror
 
                             <div class="form-group">
-                                <label for="username" class="col-sm-2 col-form-label mb-0 pb-1">Username</label>
+                                <label for="username" class="col-sm-2 col-form-label mb-0 pb-1">Username<span style="color: red;">*</span></label>
                                 <input type="text" class="form-control mb-2" placeholder="Enter your username" name="username" id="username" value="{{ old('username') }}" required>
                             </div>
                             @error("username")
@@ -63,7 +64,7 @@
                             @enderror
 
                             <div class="form-group">
-                                <label for="password" class="col-sm-2 col-form-label mb-0 pb-1">Password</label>
+                                <label for="password" class="col-sm-2 col-form-label mb-0 pb-1">Password<span style="color: red;">*</span></label>
                                 <input type="password" class="form-control mb-2" placeholder="Enter a unique password" name="password" id="password" value="{{ old('password') }}" required>
                             </div>
                             @error("password")
@@ -79,27 +80,27 @@
                             @enderror
 
                             <div class="form-group row">
-                                <label for="fav_quote_teller" class="col-sm-2 col-form-label mb-0 pb-1">By:</label>
-                                <div>
-                                    <input type="text" style="width:200px" class="form-control mb-2" name="fav_quote_teller" id="fav_quote_teller" value="{{ old('fav_quote_teller') }}" placeholder="Quote Author">
-                                </div>
+                                <label for="fav_quote_teller" class="col-sm-2 col-form-label mb-0 pb-1 ms-5" style="width: fit-content;">By:</label>
+                                <input type="text" style="width:200px" class="form-control mb-2" name="fav_quote_teller" id="fav_quote_teller" value="{{ old('fav_quote_teller') }}" placeholder="Quote Author">
                             </div>
                             @error("fav_quote_teller")
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="form-group">
-                                <label for="profile_pic" class="col-form-label mb-0 pb-1">Please upload a profile picture </label>
+                                <div for="profile_pic" class="col-form-label mb-0 pb-1 mt-3">Upload a profile picture:</div>
+                                <label for="profile_pic" id="file-upload" class="btn mb-0 pb-1" style="background-color: #4d587d; color: white;">Browse</label>
                                 <br>
-                                <input type="file" name="profile_pic" placeholder="Choose image" id="profile_pic" value="{{ old('profile_pic') }}">
+                                <input type="file" style="display: none;" name="profile_pic" placeholder="Choose image" id="profile_pic" value="{{ old('profile_pic') }}" accept="image/*">
                             </div>
                             @error('image')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
 
                             <div>
-                                <button type="submit" class="btn my-2" style="background-color: #4d587d; color: white;">Register</button>
+                                <button type="submit" class="btn mb-2 mt-4" style="background-color: #4d587d; color: white;">Register</button>
                                 <section class="mt-2"> Already have an account? <a href="/login"> login </a></section>
+                                <section class="mt-0 pt-0" style="text-align: right;"><span style="color: red;">*</span> fields are required</section>
                             </div>
                         </form>
 

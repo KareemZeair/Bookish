@@ -21,7 +21,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #F3F2F2;   border-bottom: 1px solid; border-color:lightgray;">
         <div class="container-fluid">
-            <a class="navbar-brand mb-2" href="/"><img src="MediaAssets/iconTr1.png" alt="home" style="width: 120px; height:auto;"></a>
+            <a class="navbar-brand mb-2" href="/"><img src="/MediaAssets/iconTr1.png" alt="home" style="width: 120px; height:auto;"></a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
