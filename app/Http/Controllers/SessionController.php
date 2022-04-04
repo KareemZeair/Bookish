@@ -11,7 +11,7 @@ class SessionController extends Controller
             return redirect('/Home');
         }
 
-        return view('welcome');
+        return view('user.login');
     }
 
     public function store(Request $r){
