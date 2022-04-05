@@ -20,14 +20,14 @@ class SessionController extends Controller
             'password' => ["required"]
         ]);
 
-        if(auth()->attempt($attributes)){
-            session()->flash('success', 'Welcome Back!');
-            return redirect('/');
+        if(! auth()->attempt($attributes)){
+            return back()
+                    ->withInput()
+                    ->withErrors(['email' => 'your provided credentials could not be verified.']);
         }
-
-        return back()
-                ->withInput()
-                ->withErrors(['email' => 'your provided credentials could not be verified.']);
+        
+        session()->flash('success', 'Welcome Back!');
+        return redirect('/');
     }
 
     public function destroy()

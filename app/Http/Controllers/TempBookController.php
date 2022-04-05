@@ -40,7 +40,7 @@ class TempBookController extends Controller
         ]);
     }
 
-    public function fetchBook(Request $request){
+    public function fetch(Request $request){
 
         $t_book = TempBook::from_json(json_decode($request->details, true));
 

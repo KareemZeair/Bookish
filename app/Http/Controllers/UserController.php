@@ -21,14 +21,16 @@ class UserController extends Controller
     public function store(Request $r)
     {
         request()->validate([
-            'fname' => ['required', 'max:255'],
+            'name' => ['required', 'max:255'],
             'username' => ['required', 'min:3', 'alpha_dash', 'max:255', Rule::unique('users', 'username')],
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
-            'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
+            'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:2048'],
+            'fav_quote_teller' => ['max:255'],
             'password' => ['required', 'min:8']
         ]);
+
         $u = new User();
-        $u->name = $r->fname;
+        $u->name = $r->name;
         $u->username = $r->username;
         $u->email = $r->email;
         $u->password = bcrypt($r->password);
@@ -54,7 +56,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $r)
+    public function show()
     {
         if (!auth()->check()) {
             return redirect('/');
@@ -71,9 +73,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        return view('user.edit',[
+            "user" => auth()->user()
+        ]);
     }
 
     /**
@@ -83,9 +87,54 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $r)
     {
-        //
+     
+        $user = Auth::user();
+        if($user->username == request('username')) {
+        
+            $this->validate(request(), [
+                    'name' => ['required', 'max:255'],
+                    'fav_quote_teller' => ['max:255'],
+                    'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:2048'],
+
+                ]);
+
+            $user->name = request('name');
+            $user->fav_quote = request('fav_quote');
+            $user->fav_quote_teller = request('fav_quote_teller');
+
+            if ($r->file('profile_pic') != null) {
+                $path = "storage/" . $r->file('profile_pic')->store('pic');
+                $user->img = $path;
+            }
+
+            $user->save();
+        }
+        else{
+                
+            $this->validate(request(), [
+                    'name' => ['required', 'max:255'],
+                    'fav_quote_teller' => ['max:255'],
+                    'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:2048'],
+                    'username' => ['required', 'min:3', 'alpha_dash', 'max:255', Rule::unique('users', 'username')],
+                ]);
+
+            $user->name = request('name');
+            $user->username = request('username');
+            $user->fav_quote = request('fav_quote');
+            $user->fav_quote_teller = request('fav_quote_teller');
+
+            if ($r->file('profile_pic') != null) {
+                $path = "storage/" . $r->file('profile_pic')->store('pic');
+                $user->img = $path;
+            }
+            $user->save();
+        }
+
+            return redirect('/Home');
+
+        
     }
 
     /**
@@ -117,6 +166,16 @@ class UserController extends Controller
         return redirect('/Home');
     }
 
+    public function wishlist_delete($key)
+    {
+        $book = Book::where('key', $key)->first();
+        $user = Auth::user();
+        $user->wish_list()->detach($book->id);
+
+        return redirect('/Home');
+
+    }
+
     public function pastreads(Request $r)
     {
         $bookData = json_decode($r->details, true);
@@ -132,6 +191,16 @@ class UserController extends Controller
         $user->save();
 
         return redirect('/Home');
+    }
+
+    public function pastreads_delete($key)
+    {
+        $book = Book::where('key', $key)->first();
+        $user = Auth::user();
+        $user->past_read()->detach($book->id);
+        
+        return redirect('/Home');
+
     }
 
     public function make_favourite(Request $r)

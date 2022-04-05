@@ -40,8 +40,8 @@
                             @csrf
 
                             <div class="form-group">
-                                <label for="fname" class="col-sm-2 col-form-label mb-0 pb-1">Full Name<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control mb-2" name="fname" placeholder="Enter your first and last name" id="fname" value="{{ old('fname') }}" required>
+                                <label for="name" class="col-sm-2 col-form-label mb-0 pb-1">Full Name<span style="color: red;">*</span></label>
+                                <input type="text" class="form-control mb-2" name="name" placeholder="Enter your first and last name" id="name" value="{{ old('name') }}" required>
                             </div>
                             @error("name")
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -73,7 +73,7 @@
 
                             <div class="form-group">
                                 <label for="fav_quote" class="col-sm-2 col-form-label mb-0 pb-1">Favourite Quote</label>
-                                <textarea class="form-control mb-2" name="fav_quote" id="fav_quote" value="{{ old('fav_quote') }}" placeholder="What is your favorite quote?"></textarea>
+                                <textarea class="form-control mb-2" name="fav_quote" id="fav_quote" placeholder="What is your favorite quote?">{{ old('fav_quote') }}</textarea>
                             </div>
                             @error("fav_quote")
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -88,10 +88,10 @@
                             @enderror
 
                             <div class="form-group">
-                                <div for="profile_pic" class="col-form-label mb-0 pb-1 mt-3">Upload a profile picture:</div>
+                                <div for="profile_pic" class="col-form-label mb-0 pb-1 mt-3">Upload a profile picture (Max 2 MB):</div>
                                 <label for="profile_pic" id="file-upload" class="btn mb-0 pb-1" style="background-color: #4d587d; color: white;">Browse</label>
                                 <br>
-                                <input type="file" style="display: none;" name="profile_pic" placeholder="Choose image" id="profile_pic" value="{{ old('profile_pic') }}" accept="image/*">
+                                <input type="file" style="display: none;" name="profile_pic" placeholder="Choose image" id="profile_pic" value="{{ old('profile_pic') }}" accept=".png, .jpg, .jpeg, .gif">
                             </div>
                             @error('image')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
