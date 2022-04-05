@@ -69,7 +69,7 @@
                             <a href="/book/{{$book->key}}">
                                 <img src="{{$book->img}}" style="height: 300px; object-fit: contain;" class="card-img-top img-fluid" />
                             </a>
-                            </div>
+                        </div>
                         <div class="card-body">
                             <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">{{$book->title}} ({{$book->author_name}})</a>
                             <div class="d-flex justify-content-between align-items-center">
@@ -80,7 +80,7 @@
                                         <button class="btn btn-sm btn-outline-danger" type="submit">N</button>
                                     </form>
                                 </div>
-                            </div>                      
+                            </div>
                         </div>
                     </div>
                 </div>
