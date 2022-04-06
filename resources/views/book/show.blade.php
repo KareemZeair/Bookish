@@ -141,8 +141,8 @@
         </div>
     </div>
 </div>
-   
-             
+
+
 <!-- Reviews -->
 <div class="row mx-3 p-3" style="margin-top: 50px; border: 1px solid #7a85ab; border-radius: 4px; justify-content:center;">
 
@@ -159,14 +159,14 @@
                 <input type="number" id="rating" placeholder="0" name="rating" step="1" min="0" max="5" style="width: 50px; height: 30px;">
             </div>
             @error('rating')
-                <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
+            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
             @enderror
             <div class="form-group px-0 mb-2">
                 <textarea class="form-control mb-2" name="review_content" id="write_review" placeholder="Have you read this book? Tell others what you think about it?"></textarea>
             </div>
             @error('review_content')
-                <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
-                @enderror
+            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
+            @enderror
             <div class="px-0">
                 <button type="submit" class="btn" style="background-color: #4d587d; color: white;">Submit</button>
             </div>
