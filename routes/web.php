@@ -29,7 +29,9 @@ Route::get('/book/{book:key}/list',  [ListingController::class, 'createSaved'])-
 Route::post('/book/{key}/list',  [ListingController::class, 'createNew'])->middleware('auth');// new books
 
 Route::post('/book/{book:key}/store',  [ListingController::class, 'store'])->middleware('auth');
-Route::post('/listing/{id}',  [ListingController::class, 'show'])->middleware('auth');
+Route::get('/listing/{id}',  [ListingController::class, 'show']);
+Route::get('/listing/{id}/edit',  [ListingController::class, 'edit'])->middleware('auth');
+Route::post('/listing/{id}/edit',  [ListingController::class, 'update'])->middleware('auth');
 
 
 Route::get('/user/{user:username}', [UserController::class, 'getUser']);

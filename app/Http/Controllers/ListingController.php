@@ -68,4 +68,29 @@ class ListingController extends Controller
 
         return redirect('/Home');
     }
+
+    public function show(Listing $listing)
+    {
+        return view("listing.show", [
+            "listing" => $listing
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $listing = Listing::where('id', $id)->first();
+        
+        dd(auth()->user(), $listing->user);
+        
+        if( auth()->user()->isNot($listing->user) ){
+            return back();
+        }
+
+        return view("listing.edit", [
+            "listing" => $listing
+        ]);
+
+    }
+
+
 }

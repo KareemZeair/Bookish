@@ -2,20 +2,27 @@
 
 @section('content')
 
-
-<div class="container justify-content-center" style="margin-bottom: 50px; margin-top: 50px;">
+<div class="container justify-content-center pt-5" style="margin-bottom: 50px;">
     <div class="row justify-content-center">
         <div class="col d-flex justify-content-center">
             <div class="card " style="margin-top: 50px; width: 60%">
                 <div class="card-header" style="background-color: #4d587d; color: white; text-align: center;">
-                    Adding <span style="text-decoration:underline">{{ $book->title }}</span> to a listing: 
+                    Edit <span style="text-decoration:underline">{{ $book->title }}</span> Listing Details
                 </div>
 
                 <div class="card-body">
-                    <form action="/book/{{$book->key}}/store" method="POST" enctype="multipart/form-data">
+                    <form action="/listing/{{ $listing->id }}/edit" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        <img src="{{ $book->img }}" style="height: 300px; display: block; margin-left: auto; margin-right: auto;">
+                        <img src="{{ $listing->book->getImg() }}" style="height: 300px; display: block; margin-left: auto; margin-right: auto;">
+
+                        <div class="form-group">
+                            <label for="status" class="col-sm-2 col-form-label mb-0 pb-1">Selling Status<span style="color: red;">*</span></label>
+                            <input type="text" class="form-control mb-2" name="status" id="name" required>
+                        </div>
+                        @error("status")
+                        <p style="color:red" class="text-xs mt-1">{{ $message }}</p>
+                        @enderror
 
                         <div class="form-group">
                             <label for="condition" class="col-sm-2 col-form-label mb-0 pb-1">Book condition<span style="color: red;">*</span></label>
@@ -41,11 +48,12 @@
                                         <option value="3">¥</option>
                                     </select>
                                 </div>
-
+                                
                                 <div class="col-sm-10">
-                                    <input type="price" class="form-control mb-2" placeholder="00.00" name="price" id="price" required>
+                                    <input type="price" class="form-control mb-2" value="{{$listing->price}}" placeholder="00.00" name="price" id="price" required>
                                 </div>
                             </div>
+                                
                         </div>
 
                         @error("price")
@@ -57,7 +65,7 @@
 
                         <div class="form-group">
                             <label for="description" class="col-sm-2 col-form-label mb-0 pb-1">Description</label>
-                            <textarea class="form-control mb-2" name="description" id="description" placeholder="How would you describe your copy?">{{ old('description') }}</textarea>
+                            <textarea class="form-control mb-2" name="description" id="description" placeholder="How would you describe your copy?">{{ $listing->description }}</textarea>
                         </div>
                         @error("description")
                         <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
@@ -68,25 +76,25 @@
                                 <div class="mb-1">Location</div>
                                 <div class="col-6">
                                     <label for="city" class="mb-0 pb-1">city:<span style="color: red;">*</span></label>
-                                    <input type="text" value="{{old('city')}}" class="form-control" placeholder="ex: Cairo" name="city" id="city" required>
+                                    <input type="text" value="{{ $listing->city}}" class="form-control" placeholder="ex: Cairo" name="city" id="city" required>
                                 </div>
-                                @error("city")
-                                <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
-                                @enderror
 
                                 <div class="col-6">
                                     <label for="country" class="mb-0 pb-1">country:<span style="color: red;">*</span></label>
-                                    <input type="text" value="{{old('country')}}" class="form-control " placeholder="ex: Egypt" name="country" id="country" required>
+                                    <input type="text" value="{{ $listing->country}}" class="form-control " placeholder="ex: Egypt" name="country" id="country" required>
                                 </div>
-                                @error("country")
-                                <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
-                                @enderror
                             </div>
+                            @error("city")
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                            @error("country")
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="contact" class="col-form-label mb-0 pb-1">Contact Email Address:<span style="color: red;">*</span></label>
-                            <input type="email" value="{{old('contact')}}" class="form-control mb-2" placeholder="yourcontact@email.com" name="contact" id="contact" required>
+                            <input type="email" value="{{ $listing->contact}}" class="form-control mb-2" placeholder="yourcontact@email.com" name="contact" id="contact" required>
                         </div>
                         @error("contact")
                         <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
@@ -103,17 +111,17 @@
                         @enderror
 
                         <div>
-                            <button type="submit" class="btn mb-2 mt-4" style="background-color: #4d587d; color: white;">Publish Listing</button>
-                            <section class="mt-0 pt-0" style="text-align: right;"><span style="color: red;">*</span> fields are required</section>
+                            <button type="submit" class="btn mb-2 mt-4" style="background-color: #4d587d; color: white;">Update</button>
                         </div>
                     </form>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
+
+
+
 
 @endsection
