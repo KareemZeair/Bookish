@@ -87,7 +87,7 @@
 
 
 <!-- Reviews -->
-<div class="row mx-2 p-3" style="margin-top: 50px; border: 1px solid #7a85ab; border-radius: 4px; justify-content:center;">
+<div class="row mx-3 p-3" style="margin-top: 50px; border: 1px solid #7a85ab; border-radius: 4px; justify-content:center;">
 
     <!-- Add a review -->
     <h2 style="font-family: Century Gothic, sans-serif;" class="px-0">Add a review:</h2>
