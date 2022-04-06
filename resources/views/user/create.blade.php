@@ -4,13 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Laravel</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
@@ -23,7 +20,6 @@
             /* background-image: url("MediaAssets/bg.jpg"); */
         }
     </style>
-
 </head>
 
 <body>
@@ -87,11 +83,9 @@
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                             @enderror
 
-                            <div class="form-group">
-                                <div for="profile_pic" class="col-form-label mb-0 pb-1 mt-3">Upload a profile picture (Max 2 MB):</div>
-                                <label for="profile_pic" id="file-upload" class="btn mb-0 pb-1" style="background-color: #4d587d; color: white;">Browse</label>
-                                <br>
-                                <input type="file" style="display: none;" name="profile_pic" placeholder="Choose image" id="profile_pic" value="{{ old('profile_pic') }}" accept=".png, .jpg, .jpeg, .gif">
+                            <div class="mb-3 form-group">
+                                <label for="profile_pic" class="col-form-label mb-0 pb-1 mt-3">Upload a profile picture (max 2 MB):</label>
+                                <input class="form-control" type="file" id="profile_pic" accept=".png, .jpg, .jpeg, .gif">
                             </div>
                             @error('image')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -116,5 +110,24 @@
             <small class="text-white px-5">Developed For ECE 5010</small>
         </div>
     </footer>
+
+    <!-- <script>
+        //on change event listener for #file-select
+        document.getElementById("profile_pic").onchange = function() {
+            //call getFileSelected method
+            // getFileSelected();
+            var getFileSelected = document.getElementById("profile_pic").value;
+
+            //display the results of the input file element
+            //you can append something before the getFileSelected value below
+            //like an image tag for your icon or a string saying "file selected:"
+            //for example.
+            document.getElementById("file-selected").innerHTML = getFileSelected;
+            console.log(getFileSelected)
+        };
+        // function getFileSelected() {
+        // }
+    </script> -->
+
 
 </body>

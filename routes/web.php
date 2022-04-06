@@ -6,6 +6,7 @@ use App\Http\Controllers\TempBookController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 
 
 Route::get('/Home', [UserController::class, 'show'])->middleware('auth');
@@ -23,14 +24,17 @@ Route::post('/user/pastreads', [UserController::class, 'pastreads'])->middleware
 Route::post('/user/fav_book', [UserController::class, 'make_favourite'])->middleware('auth');
 //delete favourite book?
 
+Route::get('/listing/create',  [ListingController::class, 'create']);
+
 Route::get('/', [SessionController::class, 'create']);
 Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
 Route::get('/search', [TempBookController::class, 'search']);
-Route::get('/book/external', function() { return redirect('/'); });
+Route::get('/book/external', function () {
+    return redirect('/');
+});
 Route::post('/book/external', [TempBookController::class, 'fetch']);
 
 Route::get('/book/{key}',  [BookController::class, 'show']);
-
