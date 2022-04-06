@@ -7,7 +7,7 @@
         <div class="row mx-0">
             <div class="col-3 mx-0 pt-4 pb-2 justify-content-center" style="border-right: 2px solid; border-color: #505A7C">
                 <div class="row justify-content-center mx-0">
-                    <img id="book-image" src="{{$book->img ?? $book->fallback_img}}" style="width: 220px; height:auto; ">
+                    <img id="book-image" src="{{$book->getImg()}}" style="width: 220px; height:auto; ">
                 </div>
 
                 <script>
@@ -106,39 +106,61 @@
 
         <div style="padding: 5px;">
             <div class="card h-100" style="border: 1px solid #000000; width: 220px; min-width: 180px; background-color: #f1f1f1; transition: ease-in-out .25s; justify-content:center; align-items:center;">
-                <div class="row align-items-center">
-
+                <div style="height: 400px;" class="row align-items-center">
                     <div class="col" style="text-align: center;">
-                        <a href="/listing/create">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#373E56" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-                            </svg>
-                        </a>
+                        @if( ! Route::current()->getName() == "external")<!-- saved  -->
+                            <a href="/book/{{ $book->key }}/list">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#373E56" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                                </svg>
+                            </a>
+                            <div class="card-body p-0 mt-3">
+                                <a href="/listing/create" style="color: #373E56; text-decoration:none;">Add Your Listing</a>
+                            </div>
+                        @else <!-- new -->
+                            <form action="/book/{{ $book->key }}/list" id="newListing" method="POST">
+                                @csrf
+                                <input type="hidden" name="details" value="{{ json_encode($book) }}">
+                                
+                                <button type="submit" style="border: 0px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#373E56" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                                    </svg>
+                                </button>
 
-                        <div class="card-body p-0 mt-3">
-                            <a href="/listing/create" style="color: #373E56; text-decoration:none;">Add Your Listing</a>
-                        </div>
+                                <div class="card-body p-0 mt-3">
+                                    <input type="submit" value="Add Your Listing" style="border:0px #000 solid; color: #373E56; text-decoration:none;">
+                                </div>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
-
-        <div style="padding: 5px;">
-            <div class="card h-100" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .25s;">
-                <div style="background-color: #FFFFFF;">
-                    <a href="/book/{{$book->key}}">
-                        <img src="{{$book->img}}" style="height: 300px; object-fit: contain;" class="card-img-top img-fluid" />
-                    </a>
-                </div>
-                <div class="card-body">
-                    <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">Price: <span style="font-weight: 650;">$5.50</span></a>
-                    <br>
-                    <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">Condition: <span style="font-weight: 650;">New</span></a>
-                    <br>
-                    <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">Location: <span style="font-weight: 650;">Cairo, Egypt</span></a>
+        
+        @foreach($book->listings as $listing)
+            <div style="padding: 5px;">
+                <div class="card h-100" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .25s;">
+                    <div>
+                        <img src="{{ $listing->getImg() }}" style="height: 300px; background-color: #FFFFFF; object-fit: contain;" class="card-img-top img-fluid" />
+                        @if($listing->getStatus() === "Sold")
+                        <div style="color:red; font-weight:bold; font-size:55px; position: absolute; top: 50%;  left: 50%; transform:  translate(-50%, -150%) rotate(-45deg); ">
+                            SOLD
+                        </div>
+                        @endif
+                    </div>
+                    
+                    <div class="card-body">
+                        <a class="btn align-middle stretched-link" href="/listing/{{$listing->id}}" style="color: white;" >Price: <span style="font-weight: 650;">{{$listing->displayPrice()}}</span></a>
+                        <br>
+                        <button class="btn align-middle" style="color: white;" >Condition: <span style="font-weight: 650;">{{$listing->displayCondition()}}</span></button>
+                        <br>
+                        <button class="btn align-middle" style="color: white;" >Location: <span style="font-weight: 650;">{{$listing->displayLocation()}}</span></button>
+                    </div>
                 </div>
             </div>
-        </div>
+        @endforeach
+
     </div>
 </div>
 

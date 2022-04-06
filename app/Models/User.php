@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Listing::class);
     }
+
+    public function getImg()
+    {
+        return $this->img ?? $this->fallback_img;
+    }
 }

@@ -19,9 +19,10 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('book_id')->unsigned();
-            $table->tinyInteger('condition')->nullable();
+            $table->tinyInteger('condition');
             $table->float('price');
-            $table->tinyInteger('currency')->nullable();
+            $table->tinyInteger('currency');
+            $table->tinyInteger('status')->default('0');
             $table->text('description')->nullable();
             $table->string('city');
             $table->string('country');

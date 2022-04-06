@@ -57,9 +57,11 @@ class ListingController extends Controller
         $l->contact = $r->contact;
         $pics = [];
 
-        foreach($r->file('pics') as $pic) {
-            $path = "/storage/" . $pic->store('pic');
-            array_push($pics, $path);
+        if($r->file('pics')){
+            foreach($r->file('pics') as $pic) {
+                $path = "/storage/" . $pic->store('pic');
+                array_push($pics, $path);
+            }
         }
         $l->photos = json_encode($pics);
         $l->save();

@@ -67,4 +67,9 @@ class Book extends Model
 
         return $instance;
     }
+
+    public function getImg()
+    {
+        return $this->img ?? $this->fallback_img;
+    }
 }

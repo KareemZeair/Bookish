@@ -29,6 +29,7 @@ Route::get('/book/{book:key}/list',  [ListingController::class, 'createSaved'])-
 Route::post('/book/{key}/list',  [ListingController::class, 'createNew'])->middleware('auth');// new books
 
 Route::post('/book/{book:key}/store',  [ListingController::class, 'store'])->middleware('auth');
+Route::post('/listing/{id}',  [ListingController::class, 'show'])->middleware('auth');
 
 
 Route::get('/user/{user:username}', [UserController::class, 'getUser']);
@@ -42,7 +43,7 @@ Route::get('/search', [TempBookController::class, 'search']);
 Route::get('/book/external', function () {
     return redirect('/');
 });
-Route::post('/book/external', [TempBookController::class, 'fetch']);
+Route::post('/book/external', [TempBookController::class, 'fetch'])->name('external');
 
 Route::get('/book/{key}',  [BookController::class, 'show']);
 Route::post('/book/{book:key}/review',  [ReviewController::class, 'store']);

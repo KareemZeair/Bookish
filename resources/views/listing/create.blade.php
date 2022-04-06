@@ -92,9 +92,10 @@
                             <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror
 
+
                             <div class="mb-3 form-group">
                                 <label for="pics" class="col-form-label mb-0 pb-1 mt-3">Upload some photos:</label>
-                                <input class="form-control" type="file" value="{{old('pics')}}" name="pics" id="pics" multiple accept=".png, .jpg, .jpeg">
+                                <input class="form-control" type="file" name="pics[]" id="pics" multiple accept=".png, .jpg, .jpeg">
                             </div>
 
                             @error('pics')

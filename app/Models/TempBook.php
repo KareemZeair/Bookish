@@ -5,6 +5,7 @@ namespace App\Models;
 class TempBook 
 {
     public $reviews = [];
+    public $listings = [];
     public $fallback_img = "/MediaAssets/fallback.png";
     public $key;
     public $title;
@@ -91,6 +92,10 @@ class TempBook
         return false;
     }
     
+    public function getImg()
+    {
+        return $this->img ?? $this->fallback_img;
+    }
     
 
 
