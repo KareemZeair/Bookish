@@ -33,9 +33,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">My Profile</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Marketplace</a>
-                    </li>
+
                     @auth
                     <li class="nav-item">
                         <form action="/logout" method="POST">

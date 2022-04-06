@@ -41,4 +41,3 @@ Route::post('/book/external', [TempBookController::class, 'fetch']);
 
 Route::get('/book/{key}',  [BookController::class, 'show']);
 Route::post('/book/{book:key}/review',  [ReviewController::class, 'store']);
-

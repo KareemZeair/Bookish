@@ -35,15 +35,15 @@
                                 <div class="form-group">
                                     <label for="price" class="col-sm-2 col-form-label mb-0 pb-1">Price<span style="color: red;">*</span></label>
                                     <div class="row">
-                                        <div class="col-sm-10">
-                                            <input type="price" class="form-control mb-2" placeholder="00.00" name="price" id="price" required>
-                                        </div>
                                         <div class="col-sm-2"> <select class="form-select mb-2">
                                                 <option value="Dollar">$</option>
                                                 <option value="Euro">€</option>
                                                 <option value="Pound">£</option>
                                                 <option value="Yen">¥</option>
                                             </select>
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <input type="price" class="form-control mb-2" placeholder="00.00" name="price" id="price" required>
                                         </div>
                                     </div>
                                 </div>

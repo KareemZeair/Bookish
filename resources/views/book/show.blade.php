@@ -28,9 +28,9 @@
                         @csrf
                         <input type="hidden" name="details" value="{{json_encode($book)}}">
                         @if(! $book->isWishlisted())
-                            <button class="btn btn-light my-2" type="submit" role="button" style="width: 100%;">Add to Wishlist</button>
+                        <button class="btn btn-light my-2" type="submit" role="button" style="width: 100%;">Add to Wishlist</button>
                         @else
-                            <button class="btn disabled btn-outline-light my-2" type="submit" role="button" style="width: 100%;">Added to Wishlist</button>
+                        <button class="btn disabled btn-outline-light my-2" type="submit" role="button" style="width: 100%;">Added to Wishlist</button>
                         @endif
                     </form>
 
@@ -38,21 +38,21 @@
                         @csrf
                         <input type="hidden" name="details" value="{{json_encode($book)}}">
                         @if(! $book->isPastread())
-                            <button class="btn btn-light my-2" type="submit" role="button" style="width: 100%;">Add to Past Reads</button>
+                        <button class="btn btn-light my-2" type="submit" role="button" style="width: 100%;">Add to Past Reads</button>
                         @else
-                            <button class="btn disabled btn-outline-light my-2" type="submit" role="button" style="width: 100%;">Added to Past Reads</button>
+                        <button class="btn disabled btn-outline-light my-2" type="submit" role="button" style="width: 100%;">Added to Past Reads</button>
                         @endif
-                        
+
                     </form>
 
                     <form action="/user/fav_book" method="POST">
                         @csrf
                         <input type="hidden" name="details" value="{{json_encode($book)}}">
                         @if(! $book->isFavourite())
-                            <button class="btn my-2" type="submit" role="button" style="width: 100%; background-color:goldenrod; color:black;">Set as Favourite</button>
+                        <button class="btn my-2" type="submit" role="button" style="width: 100%; background-color:goldenrod; color:black;">Set as Favourite</button>
                         @else
-                            <button class="btn disabled my-2" type="submit" role="button" style="width: 100%; border: 2px solid goldenrod; color:goldenrod;">That's Your Favourite Book!</button>
-                        @endif                        
+                        <button class="btn disabled my-2" type="submit" role="button" style="width: 100%; border: 2px solid goldenrod; color:goldenrod;">That's Your Favourite Book!</button>
+                        @endif
                     </form>
 
                 </div>
@@ -97,66 +97,112 @@
     </div>
 </section>
 
+<!-- Listings -->
+<div class="row mx-3 p-3" style="margin-top: 50px; border: 1px solid #7a85ab; border-radius: 4px;">
+    <h1>Listings</h1>
+
+    <div class="d-flex flex-row flex-nowrap overflow-auto">
+
+
+        <div style="padding: 5px;">
+            <div class="card h-100" style="border: 1px solid #000000; width: 220px; min-width: 180px; background-color: #f1f1f1; transition: ease-in-out .25s; justify-content:center; align-items:center;">
+                <div class="row align-items-center">
+
+                    <div class="col" style="text-align: center;">
+                        <a href="/listing/create">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#373E56" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                            </svg>
+                        </a>
+
+                        <div class="card-body p-0 mt-3">
+                            <a href="/listing/create" style="color: #373E56; text-decoration:none;">Add Your Listing</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 5px;">
+            <div class="card h-100" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .25s;">
+                <div style="background-color: #FFFFFF;">
+                    <a href="/book/{{$book->key}}">
+                        <img src="{{$book->img}}" style="height: 300px; object-fit: contain;" class="card-img-top img-fluid" />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">Price: <span style="font-weight: 650;">$5.50</span></a>
+                    <br>
+                    <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">Condition: <span style="font-weight: 650;">New</span></a>
+                    <br>
+                    <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">Location: <span style="font-weight: 650;">Cairo, Egypt</span></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 <!-- Reviews -->
 <div class="row mx-3 p-3" style="margin-top: 50px; border: 1px solid #7a85ab; border-radius: 4px; justify-content:center;">
 
     <!-- Add a review -->
     @if(! $book->isReviewed())
-        <h2 style="font-family: Century Gothic, sans-serif;" class="px-0">Add a review:</h2>
-        @if( ($book->isPastread() or $book->isFavourite()) and auth()->user())
+    <h1 class="px-0">Add a review:</h1>
+    @if( ($book->isPastread() or $book->isFavourite()) and auth()->user())
 
-        <div class="row mx-2 px-0 my-2" style=" width: 1220px;">
-            <form method="POST" action="/book/{{$book->key}}/review">
-                @csrf
-                <div class="form-group px-0 my-2">
-                    <label for="rating" class="me-2" style="font-size: large;">Rating:</label>
-                    <input type="rating" id="rating" placeholder="0" name="rating" step="1" min="0" max="5" style="width: 50px; height: 30px;">
-                </div>
-                <div class="form-group px-0 mb-2">
-                    <textarea class="form-control mb-2" name="review_content" id="write_review" placeholder="Have you read this book? Tell others what you think about it?"></textarea>
-                </div>
-                <div class="px-0">
-                    <button type="submit" class="btn" style="background-color: #4d587d; color: white;">Submit</button>
-                </div>
-            </form>
-        </div>
-
-        @else
-
-            @if(! ($book->isPastread() or $book->isFavourite()))
-            <div class="col-8">
-                <div class="alert alert-secondary text-center">Login or create an account to start reviewing your favourite books.</div>
+    <div class="row mx-2 px-0 my-2" style=" width: 1220px;">
+        <form method="POST" action="/book/{{$book->key}}/review">
+            @csrf
+            <div class="form-group px-0 my-2">
+                <label for="rating" class="me-2" style="font-size: large;">Rating:</label>
+                <input type="number" id="rating" placeholder="0" name="rating" step="1" min="0" max="5" style="width: 50px; height: 30px;">
             </div>
-                @elseif(! auth()->user())
-                <div class="col-8">
-                <div class="alert alert-secondary text-center">Add current book as a past read or set it as your favourite to put a review.</div>
+            <div class="form-group px-0 mb-2">
+                <textarea class="form-control mb-2" name="review_content" id="write_review" placeholder="Have you read this book? Tell others what you think about it?"></textarea>
             </div>
-            @endif
+            <div class="px-0">
+                <button type="submit" class="btn" style="background-color: #4d587d; color: white;">Submit</button>
+            </div>
+        </form>
+    </div>
 
-        @endif
+    @else
+
+    @if(! ($book->isPastread() or $book->isFavourite()))
+    <div class="col-8">
+        <div class="alert alert-secondary text-center">Login or create an account to start reviewing your favourite books.</div>
+    </div>
+    @elseif(! auth()->user())
+    <div class="col-8">
+        <div class="alert alert-secondary text-center">Add current book as a past read or set it as your favourite to put a review.</div>
+    </div>
+    @endif
+
+    @endif
     @endif
 
 
     <!-- Others' reviews -->
-    <h2 style="font-family: Century Gothic, sans-serif; margin-top:8px;">User Reviews:</h2>
+    <h1 style="margin-top:8px;">User Reviews:</h1>
     @forelse($book->reviews as $review)
     <div class="row mx-2 px-0 my-2" style="background-color: #ececec; width: 1220px; border-radius: 4px;">
 
-        
+
         <div class="col-1 px-0 mt-4">
 
             <!-- upvoting -->
             <div class="row-1 px-0 ms-4" style="font-size: 0px;">
-            <!-- <form action="/review/{{$review->id}}/like" method="POST"> -->
+                <!-- <form action="/review/{{$review->id}}/like" method="POST"> -->
                 <!-- @csrf -->
                 <!-- <label> -->
-                    <!-- <input type="submit"> -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill:{{ $review->isUpvotedBy(auth()->user()) ? '#00FF00' : '#373e56'}}" class="bi bi-caret-up" viewBox="0 0 16 16">
-                        <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z" />
-                    </svg>
+                <!-- <input type="submit"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill:#373e56" class="bi bi-caret-up" viewBox="0 0 16 16">
+                    <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z" />
+                </svg>
                 <!-- </label> -->
-            <!-- </form> -->
+                <!-- </form> -->
 
             </div>
 
@@ -178,13 +224,16 @@
         <div class="col px-0 my-3">
             <div class=" row my-1">
                 <div class="col px-0" style="font-size: large;">
-                    <a class="text-black" href="/user/{{$review->user->username}}">
-                        @if(auth()->user()->is($review->user))
-                            You
-                        @else
-                            {{ $review->user->name }}
-                        @endif
-                    </a>wrote:
+                    <span>
+                        <a href="/user/{{$review->user->username}}" style="text-decoration: none; color: black; font-weight:600;">
+                            @if(auth()->user()->is($review->user))
+                            <u>You</u>
+                            @else
+                            <u>{{ $review->user->name }}</u>
+                            @endif
+                        </a>
+                        wrote:
+                    </span>
                 </div>
                 <!-- rating */5 -->
                 <div class="col pe-5" style="text-align: end;">
@@ -198,18 +247,25 @@
                 </div>
             </div>
             <div class="row pe-0 mt-2">
-                {{  $review->content  }}
+                {{ $review->content  }}
             </div>
         </div>
     </div>
     @empty
-        <div class="col-8">
-            <div class="alert alert-secondary text-center">Other users haven't reviewed this book yet. Start by reviewing the book yourself!</div>
-        </div>
+    <div class="col-8">
+        <div class="alert alert-secondary text-center">Other users haven't reviewed this book yet. Start by reviewing the book yourself!</div>
+    </div>
     @endforelse
 
 
 </div>
+
+<style>
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0px 7px 3px rgba(0, 0, 0, 0.5);
+    }
+</style>
 
 
 
