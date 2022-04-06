@@ -19,7 +19,7 @@
                             <input type="text" class="form-control mb-2" name="name" placeholder="Enter your first and last name" id="name" value="{{ $user->name }}" required>
                         </div>
                         @error("name")
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p style="color:red" class="text-xs mt-1">{{ $message }}</p>
                         @enderror
 
                         <div class="form-group">
@@ -27,7 +27,7 @@
                             <input type="text" class="form-control mb-2" placeholder="Enter your username" name="username" id="username" value="{{ $user->username }}" required>
                         </div>
                         @error("username")
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p style="color:red" class="text-xs mt-1">{{ $message }}</p>
                         @enderror
 
                         <div class="form-group">
@@ -35,7 +35,7 @@
                             <textarea class="form-control mb-2" name="fav_quote" id="fav_quote" placeholder="What is your favorite quote?">{{$user->fav_quote}}</textarea>
                         </div>
                         @error("fav_quote")
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p style="color:red" class="text-xs mt-1">{{ $message }}</p>
                         @enderror
 
                         <div class="form-group row">

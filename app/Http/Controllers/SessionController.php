@@ -23,7 +23,7 @@ class SessionController extends Controller
         if(! auth()->attempt($attributes)){
             return back()
                     ->withInput()
-                    ->withErrors(['email' => 'your provided credentials could not be verified.']);
+                    ->withErrors(['authenticating' => 'your provided credentials could not be verified.']);
         }
         
         session()->flash('success', 'Welcome Back!');

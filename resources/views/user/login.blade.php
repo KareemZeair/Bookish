@@ -52,11 +52,16 @@
                     <div class="card-body">
                         <form method="POST" autocomplete="off" action="/login">
                             @csrf
+                            @error("authenticating")
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                            
                             <div class="form-group">
                                 <input type="text" class="form-control my-2" name="email" id="email" value="{{ old('email') }}" placeholder="Email">
                             </div>
+
                             @error("email")
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="form-group">

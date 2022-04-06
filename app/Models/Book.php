@@ -16,6 +16,11 @@ class Book extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function listings()
+    {
+        return $this->hasMany(Listing::class);
+    }
+
     public function isWishlisted()
     {
         if(auth()->user()){
@@ -61,15 +66,5 @@ class Book extends Model
         $instance->save();
 
         return $instance;
-
-        // return self::create([
-        //     'title' => $bookData['title'],
-        //     'isbn' => $bookData['isbn'],
-        //     'author_name' => $bookData['author_name'],
-        //     'publish_date' => $bookData['publish_date'],
-        //     'key' => $bookData['key'],
-        //     'img' => $bookData['img'],
-        // ]);
-
     }
 }

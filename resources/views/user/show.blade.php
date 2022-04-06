@@ -126,7 +126,7 @@
                                 <a class="btn" href="/book/{{$book->key}}" style="color: white;" class="align-middle">{{$book->title}} ({{$book->author_name}})</a>
                             </div>
                             @if(auth()->user()->is($user))
-                            <form action="/user/wishlist/{{$book->key}}" method="POST" style="text-align: right;">
+                            <form action="/user/pastreads/{{$book->key}}" method="POST" style="text-align: right;">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-sm mb-2 ms-2" style="cursor: pointer;" type="submit">

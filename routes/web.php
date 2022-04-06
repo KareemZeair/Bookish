@@ -25,7 +25,12 @@ Route::post('/user/pastreads', [UserController::class, 'pastreads'])->middleware
 Route::post('/user/fav_book', [UserController::class, 'make_favourite'])->middleware('auth');
 //delete favourite book?
 
-Route::get('/listing/create',  [ListingController::class, 'create']);
+Route::get('/book/{book:key}/list',  [ListingController::class, 'createSaved'])->middleware('auth'); //old books
+Route::post('/book/{key}/list',  [ListingController::class, 'createNew'])->middleware('auth');// new books
+
+Route::post('/book/{book:key}/store',  [ListingController::class, 'store'])->middleware('auth');
+
+
 Route::get('/user/{user:username}', [UserController::class, 'getUser']);
 
 Route::get('/', [SessionController::class, 'create']);

@@ -24,7 +24,7 @@ class UserController extends Controller
             'name' => ['required', 'max:255'],
             'username' => ['required', 'min:3', 'alpha_dash', 'max:255', Rule::unique('users', 'username')],
             'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],
-            'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:2048'],
+            'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:5120'],
             'fav_quote_teller' => ['max:255'],
             'password' => ['required', 'min:8']
         ]);
@@ -103,7 +103,7 @@ class UserController extends Controller
             $this->validate(request(), [
                     'name' => ['required', 'max:255'],
                     'fav_quote_teller' => ['max:255'],
-                    'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:2048'],
+                    'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:5120'],
 
                 ]);
 
@@ -123,7 +123,7 @@ class UserController extends Controller
             $this->validate(request(), [
                     'name' => ['required', 'max:255'],
                     'fav_quote_teller' => ['max:255'],
-                    'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:2048'],
+                    'profile_pic' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:5120'],
                     'username' => ['required', 'min:3', 'alpha_dash', 'max:255', Rule::unique('users', 'username')],
                 ]);
 

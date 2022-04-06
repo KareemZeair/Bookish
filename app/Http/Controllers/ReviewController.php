@@ -13,7 +13,7 @@ class ReviewController extends Controller
         //make sure user didn't comment before
         request()->validate([
             'review_content' => ['required'],
-            'rating' => ['required', 'min:0', 'max:5']
+            'rating' => ['required', 'numeric', 'min:0', 'max:5']
         ]);
 
         $book->reviews()->create([

@@ -40,7 +40,7 @@
                                 <input type="text" class="form-control mb-2" name="name" placeholder="Enter your first and last name" id="name" value="{{ old('name') }}" required>
                             </div>
                             @error("name")
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="form-group">
@@ -48,7 +48,7 @@
                                 <input type="email" class="form-control mb-2" placeholder="Enter your email address" name="email" id="email" value="{{ old('email') }}" required>
                             </div>
                             @error("email")
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="form-group">
@@ -56,7 +56,7 @@
                                 <input type="text" class="form-control mb-2" placeholder="Enter your username" name="username" id="username" value="{{ old('username') }}" required>
                             </div>
                             @error("username")
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="form-group">
@@ -64,7 +64,7 @@
                                 <input type="password" class="form-control mb-2" placeholder="Enter a unique password" name="password" id="password" value="{{ old('password') }}" required>
                             </div>
                             @error("password")
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="form-group">
@@ -72,7 +72,7 @@
                                 <textarea class="form-control mb-2" name="fav_quote" id="fav_quote" placeholder="What is your favorite quote?">{{ old('fav_quote') }}</textarea>
                             </div>
                             @error("fav_quote")
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="form-group row">
@@ -80,15 +80,15 @@
                                 <input type="text" style="width:200px" class="form-control mb-2" name="fav_quote_teller" id="fav_quote_teller" value="{{ old('fav_quote_teller') }}" placeholder="Quote Author">
                             </div>
                             @error("fav_quote_teller")
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div class="mb-3 form-group">
                                 <label for="profile_pic" class="col-form-label mb-0 pb-1 mt-3">Upload a profile picture (max 2 MB):</label>
-                                <input class="form-control" name="profile_pic" type="file" id="profile_pic" accept=".png, .jpg, .jpeg, .gif">
+                                <input class="form-control" type="file" name="profile_pic" id="profile_pic" accept=".png, .jpg, .jpeg, .gif">
                             </div>
                             @error('profile_pic')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror
 
                             <div>
