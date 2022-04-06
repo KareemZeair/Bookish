@@ -4,6 +4,7 @@ namespace App\Models;
 
 class TempBook 
 {
+    public $reviews = [];
     public $fallback_img = "/MediaAssets/fallback.png";
     public $key;
     public $title;
@@ -70,4 +71,27 @@ class TempBook
         return $instance;
     }
     
+    public function isWishlisted()
+    {
+        return false;
+    }
+
+    public function isPastread()
+    {
+        return false;
+    }
+
+    public function isFavourite()
+    {
+        return false;
+    }
+
+    public function isReviewed()
+    {
+        return false;
+    }
+    
+    
+
+
 }

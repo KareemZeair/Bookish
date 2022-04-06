@@ -50,10 +50,10 @@
                                 <div for="profile_pic" class="col-form-label mb-0 pb-1 mt-3">Update profile picture:</div>
                                 <label for="profile_pic" id="file-upload" class="btn mb-0 pb-1" style="background-color: #4d587d; color: white;">Browse</label>
                                 <br>
-                                <input type="file" style="display: none;" name="profile_pic" placeholder="Choose image" id="profile_pic" value="{{ old('profile_pic') }}" accept=".png, .jpg, .jpeg, .gif">
+                                <input type="file" style="display: none;" name="profile_pic" placeholder="Choose image" id="profile_pic" accept=".png, .jpg, .jpeg, .gif">
                             </div>
-                            @error('image')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @error('profile_pic')
+                            <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
                             @enderror
 
                             <div>

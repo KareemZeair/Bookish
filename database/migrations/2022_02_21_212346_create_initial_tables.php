@@ -49,12 +49,17 @@ return new class extends Migration
         });
 
         Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('book_id');
+            $table->engine = 'InnoDB';
+
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('book_id')->unsigned();
             $table->string('content');
-            $table->date('added_on');
+            $table->integer('rating');
             $table->timestamps();
+
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
         Schema::create('wish_lists', function (Blueprint $table) {

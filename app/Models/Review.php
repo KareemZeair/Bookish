@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    use HasFactory;
+    use HasFactory, Likable;
+
+    protected $guarded = [];
 
     public function user()
     {
@@ -17,5 +19,13 @@ class Review extends Model
     public function book()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    public function voteScore()
+    {
+        $up = Vote::where('review_id', $this->id)->where('upvoted', true)->count();
+        $down = Vote::where('review_id', $this->id)->where('upvoted', false)->count();
+
+        return $up - $down;
     }
 }

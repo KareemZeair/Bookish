@@ -87,7 +87,7 @@
                                 <label for="profile_pic" class="col-form-label mb-0 pb-1 mt-3">Upload a profile picture (max 2 MB):</label>
                                 <input class="form-control" type="file" id="profile_pic" accept=".png, .jpg, .jpeg, .gif">
                             </div>
-                            @error('image')
+                            @error('profile_pic')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
 

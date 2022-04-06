@@ -38,7 +38,7 @@ class UserController extends Controller
         $u->fav_quote_teller = $r->fav_quote_teller;
 
         if ($r->file('profile_pic') != null) {
-            $path = "storage/" . $r->file('profile_pic')->store('pic');
+            $path = "/storage/" . $r->file('profile_pic')->store('pic');
             $u->img = $path;
         }
 
@@ -64,6 +64,13 @@ class UserController extends Controller
 
         return view('user.show', [
             "user" => auth()->user()
+        ]);
+    }
+
+    public function getUser(User $user)
+    {
+        return view('user.show', [
+            "user" => $user
         ]);
     }
 
@@ -105,7 +112,7 @@ class UserController extends Controller
             $user->fav_quote_teller = request('fav_quote_teller');
 
             if ($r->file('profile_pic') != null) {
-                $path = "storage/" . $r->file('profile_pic')->store('pic');
+                $path = "/storage/" . $r->file('profile_pic')->store('pic');
                 $user->img = $path;
             }
 
@@ -126,7 +133,7 @@ class UserController extends Controller
             $user->fav_quote_teller = request('fav_quote_teller');
 
             if ($r->file('profile_pic') != null) {
-                $path = "storage/" . $r->file('profile_pic')->store('pic');
+                $path = "/storage/" . $r->file('profile_pic')->store('pic');
                 $user->img = $path;
             }
             $user->save();
@@ -163,7 +170,7 @@ class UserController extends Controller
         $user->wish_list()->attach($book->id);
         $user->save();
 
-        return redirect('/Home');
+        return back();
     }
 
     public function wishlist_delete($key)
@@ -190,7 +197,7 @@ class UserController extends Controller
         $user->past_read()->attach($book->id);
         $user->save();
 
-        return redirect('/Home');
+        return back();
     }
 
     public function pastreads_delete($key)

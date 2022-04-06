@@ -16,6 +16,34 @@ class Book extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function isWishlisted()
+    {
+        if(auth()->user()){
+            return (bool) auth()->user()->wish_list->contains($this);
+        }
+    }
+
+    public function isPastread()
+    {
+        if(auth()->user()){
+            return (bool) auth()->user()->past_read->contains($this);
+        }
+    }
+
+    public function isFavourite()
+    {
+        if(auth()->user()){
+            return (bool) (auth()->user()->fav_book == $this);
+        }
+    }
+
+    public function isReviewed()
+    {
+        if(auth()->user()){
+            return (bool) (auth()->user()->reviews->pluck('book_id')->contains($this->id));
+        }
+    }
+
     public static function from_json( $bookData ):self {
         $instance = new self();
 

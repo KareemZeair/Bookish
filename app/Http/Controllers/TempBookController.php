@@ -42,8 +42,15 @@ class TempBookController extends Controller
 
     public function fetch(Request $request){
 
+        
+        
         $t_book = TempBook::from_json(json_decode($request->details, true));
 
+        $db_book = Book::where('key', $t_book->key)->first();
+        if($db_book){
+            return redirect('/book/' . $t_book->key);
+        }
+        
         $url = 'https://openlibrary.org/books/' . $t_book->olid . '.json';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
