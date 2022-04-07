@@ -30,11 +30,11 @@
             <div class="collapse navbar-collapse" id="navbarScroll">
 
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 200px; padding-right: 100px;">
+                    
+                    @auth
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">My Profile</a>
                     </li>
-
-                    @auth
                     <li class="nav-item">
                         <form action="/logout" method="POST">
                             @csrf

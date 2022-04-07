@@ -43,7 +43,7 @@
                             <input type="text" style="width:200px" class="form-control mb-2" name="fav_quote_teller" id="fav_quote_teller" value="{{ $user->fav_quote_teller }}" placeholder="Quote Author">
                         </div>
                         @error("fav_quote_teller")
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                         @enderror
 
                         <div class="mb-3 form-group">
@@ -77,7 +77,7 @@
                         
 
                         @error('profile_pic')
-                        <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
+                        <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                         @enderror
 
                         <div>

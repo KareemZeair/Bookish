@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->img ?? $this->fallback_img;
     }
+
+    public function getListings()
+    {
+        return $this->listings->sortBy('status');
+    }
 }

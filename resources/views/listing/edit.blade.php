@@ -122,7 +122,7 @@
                         
 
                         @error('pics.*')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                         @enderror
 
                         <div>

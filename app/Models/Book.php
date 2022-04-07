@@ -58,6 +58,7 @@ class Book extends Model
         $instance->author_name = $bookData['author_name'];
         $instance->publish_date = $bookData['publish_date'];
         $instance->key = $bookData['key'];
+        $instance->plot = $bookData['plot'];
 
         $size = getimagesize($bookData['img']);
         if ($size[0] > 1) {

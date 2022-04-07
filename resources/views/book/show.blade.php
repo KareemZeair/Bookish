@@ -255,7 +255,7 @@
                 <div class="col px-0" style="font-size: large;">
                     <span>
                         <a href="/user/{{$review->user->username}}" style="text-decoration: none; color: black; font-weight:600;">
-                            @if(auth()->user()->is($review->user))
+                            @if(auth()->user() and auth()->user()->is($review->user))
                             <u>You</u>
                             @else
                             <u>{{ $review->user->name }}</u>

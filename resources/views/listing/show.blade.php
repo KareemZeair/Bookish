@@ -41,6 +41,7 @@
                         </div>
 
                         <!-- photos -->
+                        @if(count($imgs))
                         <div class="row mt-5 mb-3" style="background-color: #4d587d; box-shadow: 0px 0px 8px 15px #4d587d" ;>
                             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                 <!-- <div class="carousel-indicators">
@@ -48,14 +49,14 @@
                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                                 </div> -->
-                                <div class="carousel-inner">
-
-                                    <div class="carousel-item active">
-                                        <img src="/MediaAssets/1984.jpg" class="d-block" style="height:350px; margin:auto;" alt="...">
+                                <div class="carousel-inner">                                    
+                                    
+                                    @for($i = 0; $i < count($imgs) ; $i++)
+                                    <div class="carousel-item {{$active}}">
+                                        <img src="{{ $imgs[$i] }}" class="d-block" style="height:350px; margin:auto;" alt="...">
                                     </div>
-                                    <div class="carousel-item">
-                                        <img src="/MediaAssets/fallback.png" class="d-block" style="height:350px; margin:auto;" alt="...">
-                                    </div>
+                                    {{$active = ""}}
+                                    @endfor
 
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -68,6 +69,7 @@
                                 </button>
                             </div>
                         </div>
+                        @endif
                     </div>
 
 

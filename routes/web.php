@@ -32,7 +32,7 @@ Route::post('/book/{book:key}/store',  [ListingController::class, 'store'])->mid
 Route::get('/listing/{id}',  [ListingController::class, 'show']);
 Route::get('/listing/{id}/edit',  [ListingController::class, 'edit'])->middleware('auth');
 Route::post('/listing/{id}/edit',  [ListingController::class, 'update'])->middleware('auth');
-
+Route::delete('/listing/{id}', [ListingController::class, 'destroy'])->middleware('auth');
 
 Route::get('/user/{user:username}', [UserController::class, 'getUser']);
 

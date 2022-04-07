@@ -74,7 +74,9 @@ class ListingController extends Controller
         $listing = Listing::where('id', $id)->first();
 
         return view("listing.show", [
-            "listing" => $listing
+            "listing" => $listing,
+            "imgs" => $listing->getImgs(),
+            "active" => "active"
         ]);
     }
 
@@ -106,6 +108,7 @@ class ListingController extends Controller
 
         $l = Listing::where('id', $id)->first();
 
+        $l->status = $r->status;
         $l->condition = $r->condition;
         $l->price = $r->price;
         $l->currency = $r->currency;
@@ -124,6 +127,13 @@ class ListingController extends Controller
         }
 
         $l->save();
+        return redirect("/Home");
+    }
+
+    public function destroy($id)
+    {
+        $listing = Listing::where('id', $id)->first(); 
+        $listing->delete();
         return redirect("/Home");
     }
 }
