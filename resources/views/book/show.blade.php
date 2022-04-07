@@ -144,11 +144,11 @@
         <div style="padding: 5px;">
             <div class="card h-100" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .25s;">
                 <div>
-                    <img src="{{ $listing->getImg() }}" style="height: 300px; background-color: #FFFFFF; object-fit: contain;" class="card-img-top img-fluid" />
+                    <img src="{{ $listing->getImg() }}" style="z-index:1; position:relative; height: 300px; background-color: #FFFFFF; object-fit: contain;" class="card-img-top img-fluid" />
                     @if($listing->getStatus() === "Sold")
-                    <div style="color:red; font-weight:bold; font-size:55px; position: absolute; top: 50%;  left: 50%; transform:  translate(-50%, -150%) rotate(-45deg); ">
+                    <span style="color:white; font-weight:bold; font-size:25px; position: relative; z-index:2; top:-170px; background-color:#373E56; padding: 8px 77px; text-align: center;">
                         SOLD
-                    </div>
+                    </span>
                     @endif
                 </div>
 
