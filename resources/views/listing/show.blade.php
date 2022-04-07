@@ -22,6 +22,9 @@
                             <span> <span style="font-weight: bold;">Title: </span>{{ $listing->book->title }}</span>
                         </div>
                         <div class="row mt-4">
+                            <span> <span style="font-weight: bold;">Status: </span>{{ $listing->getStatus() }}</span>
+                        </div>
+                        <div class="row mt-4">
                             <span> <span style="font-weight: bold;">Price: </span>{{ $listing->displayPrice() }}</span>
                         </div>
                         <div class="row mt-4">
