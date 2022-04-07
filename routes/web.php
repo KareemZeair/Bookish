@@ -26,7 +26,7 @@ Route::post('/user/fav_book', [UserController::class, 'make_favourite'])->middle
 //delete favourite book?
 
 Route::get('/book/{book:key}/list',  [ListingController::class, 'createSaved'])->middleware('auth'); //old books
-Route::post('/book/{key}/list',  [ListingController::class, 'createNew'])->middleware('auth');// new books
+Route::post('/book/{key}/list',  [ListingController::class, 'createNew'])->middleware('auth'); // new books
 
 Route::post('/book/{book:key}/store',  [ListingController::class, 'store'])->middleware('auth');
 Route::get('/listing/{id}',  [ListingController::class, 'show']);

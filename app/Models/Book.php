@@ -23,33 +23,34 @@ class Book extends Model
 
     public function isWishlisted()
     {
-        if(auth()->user()){
+        if (auth()->user()) {
             return (bool) auth()->user()->wish_list->contains($this);
         }
     }
 
     public function isPastread()
     {
-        if(auth()->user()){
+        if (auth()->user()) {
             return (bool) auth()->user()->past_read->contains($this);
         }
     }
 
     public function isFavourite()
     {
-        if(auth()->user()){
+        if (auth()->user()) {
             return (bool) (auth()->user()->fav_book == $this);
         }
     }
 
     public function isReviewed()
     {
-        if(auth()->user()){
+        if (auth()->user()) {
             return (bool) (auth()->user()->reviews->pluck('book_id')->contains($this->id));
         }
     }
 
-    public static function from_json( $bookData ):self {
+    public static function from_json($bookData): self
+    {
         $instance = new self();
 
         $instance->title = $bookData['title'];
@@ -59,7 +60,7 @@ class Book extends Model
         $instance->key = $bookData['key'];
 
         $size = getimagesize($bookData['img']);
-        if ($size[0] > 1){
+        if ($size[0] > 1) {
             $instance->img = $bookData['img'];
         }
 
@@ -71,5 +72,10 @@ class Book extends Model
     public function getImg()
     {
         return $this->img ?? $this->fallback_img;
+    }
+
+    public function getListings()
+    {
+        return $this->listings->sortBy('status');
     }
 }

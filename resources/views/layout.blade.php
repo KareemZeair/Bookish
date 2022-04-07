@@ -55,7 +55,7 @@
                 <form class="d-flex" method="GET" action="/search">
                     <input class="form-control me-2" name="keyword" type="search" placeholder="Search for Books" aria-label="Search">
                     <input type="hidden" id="page" name="page" value="1">
-                    <button class="btn" type="submit"><img src="MediaAssets/search.svg" alt=""></button>
+                    <button class="btn" type="submit"><img src="/MediaAssets/search.svg" alt=""></button>
                 </form>
             </div>
         </div>

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class TempBook 
+class TempBook
 {
     public $reviews = [];
     public $listings = [];
@@ -21,7 +21,7 @@ class TempBook
         $s = Null;
         foreach ($seeds as $seed) {
             if (str_starts_with($seed, "/books")) {
-                $s = substr($seed, strlen("/books")+1);
+                $s = substr($seed, strlen("/books") + 1);
 
                 break;
             }
@@ -30,8 +30,8 @@ class TempBook
     }
 
     public static function extractISBN($isbns)
-    {   
-        if(! $isbns){
+    {
+        if (!$isbns) {
             return null;
         }
 
@@ -45,7 +45,8 @@ class TempBook
         return $i;
     }
 
-    public static function from_json( $bookData ) {
+    public static function from_json($bookData)
+    {
         $instance = new self();
         $instance->key = $bookData['key'];
         $instance->title = $bookData['title'];
@@ -58,10 +59,11 @@ class TempBook
         return $instance;
     }
 
-    public static function from_api( $apiBook ) {
+    public static function from_api($apiBook)
+    {
         $instance = new self();
 
-        $instance->key = substr($apiBook->key, strlen("/works")+1);
+        $instance->key = substr($apiBook->key, strlen("/works") + 1);
         $instance->title = $apiBook->title;
         $instance->author_name = $apiBook->author_name[0] ?? $apiBook->author_name ?? null;
         $instance->publish_date = $apiBook->publish_date[1] ?? $apiBook->publish_date[0] ?? $apiBook->publish_date ?? null;
@@ -71,7 +73,7 @@ class TempBook
 
         return $instance;
     }
-    
+
     public function isWishlisted()
     {
         return false;
@@ -91,12 +93,14 @@ class TempBook
     {
         return false;
     }
-    
+
     public function getImg()
     {
         return $this->img ?? $this->fallback_img;
     }
-    
 
-
+    public function getListings()
+    {
+        return $this->listings;
+    }
 }

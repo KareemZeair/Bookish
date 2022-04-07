@@ -15,7 +15,7 @@ class ListingController extends Controller
 
     public function createSaved(Book $book)
     {
-        return view('listing.create',[
+        return view('listing.create', [
             'book' => $book
         ]);
     }
@@ -28,7 +28,7 @@ class ListingController extends Controller
         if ($book === null) {
             $book = Book::from_json($bookData);
         }
-        return view('listing.create',[
+        return view('listing.create', [
             'book' => $book
         ]);
     }
@@ -57,8 +57,8 @@ class ListingController extends Controller
         $l->contact = $r->contact;
         $pics = [];
 
-        if($r->file('pics')){
-            foreach($r->file('pics') as $pic) {
+        if ($r->file('pics')) {
+            foreach ($r->file('pics') as $pic) {
                 $path = "/storage/" . $pic->store('pic');
                 array_push($pics, $path);
             }
@@ -69,8 +69,10 @@ class ListingController extends Controller
         return redirect('/Home');
     }
 
-    public function show(Listing $listing)
+    public function show($id)
     {
+        $listing = Listing::where('id', $id)->first();
+
         return view("listing.show", [
             "listing" => $listing
         ]);
@@ -80,7 +82,7 @@ class ListingController extends Controller
     {
         $listing = Listing::where('id', $id)->first();
 
-        if( auth()->user()->isNot($listing->user) ){
+        if (auth()->user()->isNot($listing->user)) {
             return back();
         }
 
@@ -111,19 +113,17 @@ class ListingController extends Controller
         $l->description = $r->description;
         $l->country = $r->country;
         $l->contact = $r->contact;
-        
-        if($r->file('pics')){
+
+        if ($r->file('pics')) {
             $pics = [];
-            foreach($r->file('pics') as $pic) {
+            foreach ($r->file('pics') as $pic) {
                 $path = "/storage/" . $pic->store('pic');
                 array_push($pics, $path);
             }
             $l->photos = json_encode($pics);
         }
-        
+
         $l->save();
         return redirect("/Home");
     }
-
-
 }
