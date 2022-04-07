@@ -98,7 +98,7 @@
                             <input class="form-control" type="file" name="pics[]" id="pics" multiple accept=".png, .jpg, .jpeg">
                         </div>
 
-                        @error('pics')
+                        @error('pics.*')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
 

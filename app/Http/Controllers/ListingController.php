@@ -79,9 +79,7 @@ class ListingController extends Controller
     public function edit($id)
     {
         $listing = Listing::where('id', $id)->first();
-        
-        dd(auth()->user(), $listing->user);
-        
+
         if( auth()->user()->isNot($listing->user) ){
             return back();
         }
@@ -89,7 +87,42 @@ class ListingController extends Controller
         return view("listing.edit", [
             "listing" => $listing
         ]);
+    }
 
+    public function update($id, Request $r)
+    {
+        $this->validate(request(), [
+            'status' => ['required', 'numeric', 'min:0', 'max:2'],
+            'condition' => ['required', 'numeric', 'min:0', 'max:3'],
+            'price' => ['required', 'numeric'],
+            'currency' => ['required', 'numeric', 'min:0', 'max:3'],
+            'city' => ['required', 'max:255'],
+            'country' => ['required', 'max:255'],
+            'contact' => ['required', 'email', 'max:255'],
+            'pics.*' => ['image', 'mimes:jpg,png,jpeg,gif', 'max:5120'],
+        ]);
+
+        $l = Listing::where('id', $id)->first();
+
+        $l->condition = $r->condition;
+        $l->price = $r->price;
+        $l->currency = $r->currency;
+        $l->city = $r->city;
+        $l->description = $r->description;
+        $l->country = $r->country;
+        $l->contact = $r->contact;
+        
+        if($r->file('pics')){
+            $pics = [];
+            foreach($r->file('pics') as $pic) {
+                $path = "/storage/" . $pic->store('pic');
+                array_push($pics, $path);
+            }
+            $l->photos = json_encode($pics);
+        }
+        
+        $l->save();
+        return redirect("/Home");
     }
 
 

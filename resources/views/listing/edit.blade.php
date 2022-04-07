@@ -7,7 +7,7 @@
         <div class="col d-flex justify-content-center">
             <div class="card " style="margin-top: 50px; width: 60%">
                 <div class="card-header" style="background-color: #4d587d; color: white; text-align: center;">
-                    Edit <span style="text-decoration:underline">{{ $book->title }}</span> Listing Details
+                    Edit <span style="text-decoration:underline">{{ $listing->book->title }}</span> Listing Details
                 </div>
 
                 <div class="card-body">
@@ -18,8 +18,19 @@
 
                         <div class="form-group">
                             <label for="status" class="col-sm-2 col-form-label mb-0 pb-1">Selling Status<span style="color: red;">*</span></label>
-                            <input type="text" class="form-control mb-2" name="status" id="name" required>
+                            <select name="status" class="form-select mb-2">
+                                @for($i=0; $i!=3; $i++)
+                                <option value="{{$i}}"
+                                @if($listing->status == $i)
+                                    selected="selected"
+                                @endif
+                                >{{$listing->status_enum[$i]}}</option>
+                                @endfor
+                            </select>
+
                         </div>
+                       
+                       
                         @error("status")
                         <p style="color:red" class="text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -27,10 +38,13 @@
                         <div class="form-group">
                             <label for="condition" class="col-sm-2 col-form-label mb-0 pb-1">Book condition<span style="color: red;">*</span></label>
                             <select name="condition" class="form-select mb-2">
-                                <option value="0">Brand new</option>
-                                <option value="1">Like new</option>
-                                <option value="2">Used</option>
-                                <option value="3">Vintage</option>
+                                @for($i=0; $i!=4; $i++)
+                                <option value="{{$i}}"
+                                @if($listing->condition == $i)
+                                    selected="selected"
+                                @endif
+                                >{{$listing->condition_enum[$i]}}</option>
+                                @endfor
                             </select>
                         </div>
                         @error("condition")
@@ -105,8 +119,9 @@
                             <label for="pics" class="col-form-label mb-0 pb-1 mt-3">Upload some photos:</label>
                             <input class="form-control" type="file" name="pics[]" id="pics" multiple accept=".png, .jpg, .jpeg">
                         </div>
+                        
 
-                        @error('pics')
+                        @error('pics.*')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
 

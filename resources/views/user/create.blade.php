@@ -85,8 +85,29 @@
 
                             <div class="mb-3 form-group">
                                 <label for="profile_pic" class="col-form-label mb-0 pb-1 mt-3">Upload a profile picture (max 2 MB):</label>
-                                <input class="form-control" type="file" name="profile_pic" id="profile_pic" accept=".png, .jpg, .jpeg, .gif">
+                                <input class="form-control" onchange="loadFile(event)" type="file" name="profile_pic" id="profile_pic" accept=".png, .jpg, .jpeg, .gif">
                             </div>
+                            <img id="display_image" style="display:none; width: 300px; height:300px; background-color:#FFFFFF; border-radius: 50%; border: 2px solid #000000; object-fit: contain; padding: 2px;">
+
+                            <script>
+                                var image = document.getElementById('display_image');
+                                if(! image.src == ''){
+                                    image.style.display = 'block';
+                                }
+                                else{
+                                    image.style.display = 'none';
+                                }
+                                var loadFile = function(event) {
+                                    image.src = URL.createObjectURL(event.target.files[0]);
+                                    if(! image.src == ''){
+                                        image.style.display = 'block';
+                                    }
+                                    else{
+                                        image.style.display = 'none';
+                                    }
+                                };
+                            </script>
+
                             @error('profile_pic')
                             <p style="color: red;" class="text-xs mt-1">{{ $message }}</p>
                             @enderror

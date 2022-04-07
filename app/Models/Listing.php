@@ -30,7 +30,7 @@ class Listing extends Model
 
     public function getImgs()
     {
-
+        return json_decode($this->photos, true);
     }
 
     public function displayPrice()

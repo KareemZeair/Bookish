@@ -138,7 +138,7 @@
             </div>
         </div>
         
-        @foreach($book->listings as $listing)
+        @foreach($book->listings->sortBy('status') as $listing)
             <div style="padding: 5px;">
                 <div class="card h-100" style="width: 220px; min-width: 180px; background-color: #373E56; transition: ease-in-out .25s;">
                     <div>
